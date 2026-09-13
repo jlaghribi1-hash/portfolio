@@ -1,0 +1,1699 @@
+```html
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Jabir LAGHRIBI — Portfolio BTS SIO SISR</title>
+
+    <meta
+        name="description"
+        content="Portfolio de Jabir LAGHRIBI, étudiant en BTS SIO option SISR, spécialisé en systèmes, réseaux, sécurité et automatisation."
+    >
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"]
+                    },
+                    boxShadow: {
+                        glow: "0 0 40px rgba(56, 189, 248, 0.15)"
+                    }
+                }
+            }
+        };
+    </script>
+
+    <!-- FontAwesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- Devicon -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+    >
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        section {
+            scroll-margin-top: 100px;
+        }
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.62);
+            border: 1px solid rgba(148, 163, 184, 0.15);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0.85rem;
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            border-radius: 9999px;
+            background: rgba(14, 165, 233, 0.08);
+            color: #7dd3fc;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .nav-link {
+            position: relative;
+            color: #cbd5e1;
+            transition: color 0.25s ease;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #38bdf8;
+        }
+
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 100%;
+            height: 2px;
+            border-radius: 999px;
+            background: #38bdf8;
+            transform: scaleX(0);
+            transform-origin: center;
+            transition: transform 0.25s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            transform: scaleX(1);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition:
+                opacity 0.8s ease,
+                transform 0.8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .skill-card,
+        .project-card {
+            transition:
+                transform 0.3s ease,
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .skill-card:hover,
+        .project-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(56, 189, 248, 0.45);
+            box-shadow: 0 20px 60px rgba(2, 132, 199, 0.12);
+        }
+
+        .project-image {
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.05);
+        }
+
+        .timeline-line {
+            background: linear-gradient(
+                to bottom,
+                rgba(56, 189, 248, 0.9),
+                rgba(56, 189, 248, 0.15)
+            );
+        }
+
+        .certifications-track {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            scroll-behavior: smooth;
+        }
+
+        .certifications-track::-webkit-scrollbar {
+            display: none;
+        }
+
+        .certification-slide {
+            flex: 0 0 calc(100% - 0.25rem);
+            scroll-snap-align: start;
+        }
+
+        @media (min-width: 768px) {
+            .certification-slide {
+                flex-basis: calc(78% - 0.75rem);
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .certification-slide {
+                flex-basis: calc(60% - 0.75rem);
+            }
+        }
+
+        .progress-fill {
+            width: 0;
+            transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .reveal.visible .progress-86 {
+            width: 86%;
+        }
+
+        .reveal.visible .progress-88 {
+            width: 88%;
+        }
+
+        .reveal.visible .progress-90 {
+            width: 90%;
+        }
+
+        .blob {
+            position: fixed;
+            z-index: -1;
+            border-radius: 9999px;
+            filter: blur(100px);
+            pointer-events: none;
+            opacity: 0.22;
+        }
+
+        .blob-one {
+            top: 8%;
+            left: -8rem;
+            width: 25rem;
+            height: 25rem;
+            background: #0ea5e9;
+        }
+
+        .blob-two {
+            top: 45%;
+            right: -10rem;
+            width: 30rem;
+            height: 30rem;
+            background: #2563eb;
+        }
+
+        .blob-three {
+            bottom: 0;
+            left: 30%;
+            width: 22rem;
+            height: 22rem;
+            background: #06b6d4;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #38bdf8;
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.1);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+
+            .progress-fill {
+                transition: none;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-slate-900 font-sans text-slate-200 antialiased selection:bg-sky-400 selection:text-slate-950">
+
+    <!-- Décoration d'arrière-plan -->
+    <div class="blob blob-one"></div>
+    <div class="blob blob-two"></div>
+    <div class="blob blob-three"></div>
+
+    <!-- Barre de navigation -->
+    <header class="fixed top-0 z-50 w-full border-b border-slate-700 bg-slate-950/85 backdrop-blur-xl">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="grid h-20 grid-cols-[auto_1fr_auto] items-center gap-4">
+
+                <!-- Logo -->
+                <a href="#accueil" class="text-base sm:text-lg" aria-label="Retour à l'accueil">
+                    <span class="text-sky-400 font-bold">Jabir</span> <span class="text-white font-bold">LAGHRIBI</span>
+                </a>
+
+                <!-- Navigation centrale -->
+                <nav
+                    class="hidden items-center justify-self-center gap-5 text-sm font-medium lg:flex xl:gap-7"
+                    aria-label="Navigation principale"
+                >
+                    <a class="nav-link" href="#accueil">Accueil</a>
+                    <a class="nav-link" href="#a-propos">À propos</a>
+                    <a class="nav-link" href="#competences">Compétences</a>
+                    <a class="nav-link" href="#projets">Projets</a>
+                    <a class="nav-link" href="#epreuves">E5/E6</a>
+                    <a class="nav-link" href="#contact">Contact</a>
+                </nav>
+
+                <!-- Réseaux sociaux et menu mobile -->
+                <div class="flex items-center justify-end gap-2">
+                    <a
+                        href="https://www.linkedin.com/in/jabir-laghribi-494b08387"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-sky-500/30 bg-sky-500/10 text-sky-400 transition hover:border-sky-400 hover:bg-sky-400 hover:text-slate-950"
+                        aria-label="Profil LinkedIn"
+                        title="LinkedIn"
+                    >
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+
+                    <a
+                        href="https://github.com/jlaghribi1-hash"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-600 bg-slate-800/70 text-white transition hover:border-sky-400 hover:text-sky-400"
+                        aria-label="Profil GitHub"
+                        title="GitHub"
+                    >
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+
+                    <button
+                        id="mobile-menu-button"
+                        type="button"
+                        class="ml-1 inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-700 bg-slate-800/70 text-slate-200 transition hover:border-sky-400 hover:text-sky-400 lg:hidden"
+                        aria-label="Ouvrir le menu"
+                        aria-controls="mobile-menu"
+                        aria-expanded="false"
+                    >
+                        <i id="mobile-menu-icon" class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Menu mobile -->
+            <nav
+                id="mobile-menu"
+                class="hidden border-t border-slate-700/70 py-4 lg:hidden"
+                aria-label="Navigation mobile"
+            >
+                <div class="grid gap-1">
+                    <a class="mobile-nav-link rounded-xl px-4 py-3 text-slate-300 transition hover:bg-slate-800 hover:text-sky-400" href="#accueil">Accueil</a>
+                    <a class="mobile-nav-link rounded-xl px-4 py-3 text-slate-300 transition hover:bg-slate-800 hover:text-sky-400" href="#a-propos">À propos</a>
+                    <a class="mobile-nav-link rounded-xl px-4 py-3 text-slate-300 transition hover:bg-slate-800 hover:text-sky-400" href="#competences">Compétences</a>
+                    <a class="mobile-nav-link rounded-xl px-4 py-3 text-slate-300 transition hover:bg-slate-800 hover:text-sky-400" href="#projets">Projets</a>
+                    <a class="mobile-nav-link rounded-xl px-4 py-3 text-slate-300 transition hover:bg-slate-800 hover:text-sky-400" href="#epreuves">E5/E6</a>
+                    <a class="mobile-nav-link rounded-xl px-4 py-3 text-slate-300 transition hover:bg-slate-800 hover:text-sky-400" href="#contact">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Accueil -->
+        <section id="accueil" class="relative flex min-h-screen items-center pt-28">
+            <div class="mx-auto w-full max-w-7xl px-6 py-24 lg:px-8">
+                <div class="max-w-4xl reveal">
+                    <div class="section-label mb-8">
+                        <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
+                        Disponible pour de nouvelles opportunités
+                    </div>
+
+                    <h1 class="text-5xl font-extrabold tracking-tight sm:text-6xl lg:text-8xl">
+                        <span class="text-sky-400 font-bold">Jabir</span> <span class="text-white font-bold">LAGHRIBI</span>
+                    </h1>
+
+                    <p class="mt-7 text-xl font-semibold text-sky-400 sm:text-2xl">
+                        Étudiant en BTS SIO - Option SISR
+                    </p>
+
+                    <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-300 sm:text-xl">
+                        Futur administrateur systèmes et réseaux, passionné par
+                        l'infrastructure, la sécurité et l'automatisation.
+                    </p>
+
+                    <div class="mt-10 flex flex-wrap items-center gap-4">
+                        <a
+                            href="#projets"
+                            class="inline-flex items-center gap-2 rounded-xl border border-sky-400 bg-sky-400/10 px-5 py-3 font-semibold text-sky-300 transition hover:bg-sky-400 hover:text-slate-950"
+                        >
+                            <i class="fa-solid fa-diagram-project"></i>
+                            Voir les projets
+                        </a>
+
+                        <a
+                            href="./cv.pdf"
+                            download
+                            class="inline-flex items-center gap-2 rounded-xl border border-sky-500/70 bg-slate-800/70 px-5 py-3 font-semibold text-white transition hover:border-sky-400 hover:bg-slate-700"
+                        >
+                            <i class="fa-solid fa-file-pdf text-sky-400"></i>
+                            Télécharger mon CV
+                        </a>
+
+                        <a
+                            href="https://www.linkedin.com/in/jabir-laghribi-494b08387"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="inline-flex items-center gap-2 rounded-xl border border-sky-500/50 bg-slate-800/70 px-5 py-3 font-semibold text-white transition hover:border-sky-400 hover:text-sky-400"
+                        >
+                            <i class="fa-brands fa-linkedin-in text-sky-400"></i>
+                            LinkedIn
+                        </a>
+
+                        <a
+                            href="https://github.com/jlaghribi1-hash"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="inline-flex items-center gap-2 rounded-xl border border-slate-600 bg-slate-800/70 px-5 py-3 font-semibold text-white transition hover:border-sky-400 hover:text-sky-400"
+                        >
+                            <i class="fa-brands fa-github"></i>
+                            GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- À propos -->
+        <section id="a-propos" class="py-28 lg:py-36">
+            <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                <div class="reveal">
+                    <span class="section-label">À propos</span>
+
+                    <div class="mt-6 grid items-start gap-10 lg:grid-cols-[1fr_0.65fr]">
+                        <div>
+                            <h2 class="text-3xl font-bold text-white sm:text-4xl">
+                                Un profil orienté infrastructure,
+                                <span class="text-sky-400">sécurité et résolution</span>
+                            </h2>
+
+                            <p class="mt-8 text-lg leading-9 text-slate-300">
+                                Passionné par l'informatique depuis mon plus jeune âge,
+                                ma curiosité m'a d'abord poussé à comprendre l'envers du
+                                décor de mes jeux vidéo et à réparer moi-même mes consoles.
+                                Cette envie de comprendre « comment ça marche » s'est
+                                transformée en vocation, m'orientant vers la gestion des
+                                infrastructures (SISR). Curieux et débrouillard, j'aime
+                                automatiser les tâches et résoudre des problèmes complexes.
+                                Après l'obtention de mon BTS, j'ai pour ambition de poursuivre
+                                mes études en Licence pour consolider mon expertise.
+                            </p>
+                        </div>
+
+                        <div class="glass-card rounded-3xl p-7 shadow-glow">
+                            <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-sky-400/10 text-2xl text-sky-400">
+                                <i class="fa-solid fa-server"></i>
+                            </div>
+
+                            <h3 class="mt-6 text-xl font-bold text-white">
+                                Objectif professionnel
+                            </h3>
+
+                            <p class="mt-4 leading-7 text-slate-300">
+                                Concevoir, administrer et sécuriser des infrastructures
+                                fiables tout en améliorant leur efficacité grâce à
+                                l'automatisation.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certifications -->
+                <div class="mt-24 reveal">
+                    <div class="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+                        <div>
+                            <span class="section-label">Certifications</span>
+                            <h3 class="mt-5 text-3xl font-bold text-white">
+                                Certifications et formations
+                            </h3>
+                            <p class="mt-3 text-slate-400">
+                                Faites glisser les cartes ou utilisez les flèches.
+                            </p>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <button
+                                id="certification-previous"
+                                type="button"
+                                class="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-slate-600 bg-slate-800/80 text-slate-300 transition hover:border-sky-400 hover:text-sky-400 disabled:cursor-not-allowed disabled:opacity-40"
+                                aria-label="Certification précédente"
+                            >
+                                <i class="fa-solid fa-arrow-left"></i>
+                            </button>
+
+                            <button
+                                id="certification-next"
+                                type="button"
+                                class="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-slate-600 bg-slate-800/80 text-slate-300 transition hover:border-sky-400 hover:text-sky-400 disabled:cursor-not-allowed disabled:opacity-40"
+                                aria-label="Certification suivante"
+                            >
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div
+                        id="certifications-track"
+                        class="certifications-track mt-8 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4"
+                        tabindex="0"
+                        aria-label="Carrousel des certifications"
+                    >
+                        <!-- Certification ANSSI -->
+                        <article class="certification-slide glass-card min-h-[600px] rounded-3xl p-6 shadow-glow sm:p-8">
+                            <div class="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
+                                <div class="flex items-center gap-4">
+                                    <div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-sky-400/20 bg-sky-400/10 text-3xl text-sky-400">
+                                        <i class="fa-solid fa-shield-halved"></i>
+                                    </div>
+
+                                    <div>
+                                        <p class="text-sm font-semibold uppercase tracking-wider text-sky-400">
+                                            ANSSI
+                                        </p>
+                                        <h4 class="mt-1 text-xl font-bold text-white sm:text-2xl">
+                                            Attestation de suivi SecNumacadémie (ANSSI)
+                                        </h4>
+                                    </div>
+                                </div>
+
+                                <span class="inline-flex w-fit items-center gap-2 rounded-full border border-emerald-400/25 bg-emerald-400/10 px-3 py-1.5 text-sm font-semibold text-emerald-300">
+                                    <i class="fa-solid fa-circle-check"></i>
+                                    Validée
+                                </span>
+                            </div>
+
+                            <div class="mt-7 flex items-center gap-3 rounded-2xl border border-slate-700 bg-slate-950/40 px-4 py-3 text-slate-300">
+                                <i class="fa-regular fa-calendar text-sky-400"></i>
+                                <span>
+                                    Date d'obtention :
+                                    <strong class="text-white">28 Décembre 2025</strong>
+                                </span>
+                            </div>
+
+                            <div class="mt-8 space-y-6">
+                                <div>
+                                    <div class="mb-2 flex items-center justify-between gap-4">
+                                        <span class="font-medium text-slate-200">
+                                            Panorama de la SSI
+                                        </span>
+                                        <span class="rounded-full bg-sky-400/10 px-3 py-1 text-sm font-bold text-sky-300">
+                                            86.0%
+                                        </span>
+                                    </div>
+                                    <div class="h-2.5 overflow-hidden rounded-full bg-slate-700">
+                                        <div class="progress-fill progress-86 h-full rounded-full bg-gradient-to-r from-sky-500 to-cyan-300"></div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="mb-2 flex items-center justify-between gap-4">
+                                        <span class="font-medium text-slate-200">
+                                            Sécurité de l'authentification
+                                        </span>
+                                        <span class="rounded-full bg-sky-400/10 px-3 py-1 text-sm font-bold text-sky-300">
+                                            88.0%
+                                        </span>
+                                    </div>
+                                    <div class="h-2.5 overflow-hidden rounded-full bg-slate-700">
+                                        <div class="progress-fill progress-88 h-full rounded-full bg-gradient-to-r from-sky-500 to-cyan-300"></div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="mb-2 flex items-center justify-between gap-4">
+                                        <span class="font-medium text-slate-200">
+                                            Sécurité sur Internet
+                                        </span>
+                                        <span class="rounded-full bg-sky-400/10 px-3 py-1 text-sm font-bold text-sky-300">
+                                            90.0%
+                                        </span>
+                                    </div>
+                                    <div class="h-2.5 overflow-hidden rounded-full bg-slate-700">
+                                        <div class="progress-fill progress-90 h-full rounded-full bg-gradient-to-r from-sky-500 to-cyan-300"></div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="mb-2 flex items-center justify-between gap-4">
+                                        <span class="font-medium text-slate-200">
+                                            Sécurité du poste de travail et nomadisme
+                                        </span>
+                                        <span class="rounded-full bg-sky-400/10 px-3 py-1 text-sm font-bold text-sky-300">
+                                            88.0%
+                                        </span>
+                                    </div>
+                                    <div class="h-2.5 overflow-hidden rounded-full bg-slate-700">
+                                        <div class="progress-fill progress-88 h-full rounded-full bg-gradient-to-r from-sky-500 to-cyan-300"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-9">
+                                <a
+                                    href="./attestation Anssi.pdf"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-2 rounded-xl border border-sky-400/70 bg-sky-400/5 px-5 py-3 font-semibold text-sky-300 transition hover:bg-sky-400 hover:text-slate-950"
+                                >
+                                    <i class="fa-solid fa-file-pdf"></i>
+                                    Voir l'attestation officielle
+                                </a>
+                            </div>
+                        </article>
+
+                        <!-- Certification CNIL -->
+                        <article class="certification-slide glass-card min-h-[600px] rounded-3xl p-6 sm:p-8">
+                            <div class="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
+                                <div class="flex items-center gap-4">
+                                    <div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-violet-400/20 bg-violet-400/10 text-3xl text-violet-300">
+                                        <i class="fa-solid fa-user-shield"></i>
+                                    </div>
+
+                                    <div>
+                                        <p class="text-sm font-semibold uppercase tracking-wider text-violet-300">
+                                            CNIL
+                                        </p>
+                                        <h4 class="mt-1 text-xl font-bold text-white sm:text-2xl">
+                                            CNIL (Atelier RGPD)
+                                        </h4>
+                                    </div>
+                                </div>
+
+                                <span class="inline-flex w-fit items-center gap-2 rounded-full border border-amber-400/25 bg-amber-400/10 px-3 py-1.5 text-sm font-semibold text-amber-300">
+                                    <i class="fa-regular fa-clock"></i>
+                                    En cours de préparation
+                                </span>
+                            </div>
+
+                            <div class="mt-8 rounded-2xl border border-slate-700 bg-slate-950/40 p-6">
+                                <h5 class="font-bold text-white">
+                                    Sensibilisation à la protection des données
+                                </h5>
+
+                                <p class="mt-3 leading-7 text-slate-300">
+                                    Formation consacrée aux principes fondamentaux du RGPD,
+                                    à la protection des données personnelles et aux bonnes
+                                    pratiques à appliquer dans un système d'information.
+                                </p>
+                            </div>
+
+                            <div class="mt-8 grid gap-4 sm:grid-cols-2">
+                                <div class="rounded-2xl border border-slate-700 bg-slate-950/30 p-5">
+                                    <i class="fa-solid fa-scale-balanced text-xl text-violet-300"></i>
+                                    <h5 class="mt-4 font-semibold text-white">
+                                        Principes du RGPD
+                                    </h5>
+                                    <p class="mt-2 text-sm leading-6 text-slate-400">
+                                        Cadre légal, responsabilités et conformité.
+                                    </p>
+                                </div>
+
+                                <div class="rounded-2xl border border-slate-700 bg-slate-950/30 p-5">
+                                    <i class="fa-solid fa-database text-xl text-violet-300"></i>
+                                    <h5 class="mt-4 font-semibold text-white">
+                                        Données personnelles
+                                    </h5>
+                                    <p class="mt-2 text-sm leading-6 text-slate-400">
+                                        Collecte, traitement, conservation et sécurité.
+                                    </p>
+                                </div>
+
+                                <div class="rounded-2xl border border-slate-700 bg-slate-950/30 p-5">
+                                    <i class="fa-solid fa-user-lock text-xl text-violet-300"></i>
+                                    <h5 class="mt-4 font-semibold text-white">
+                                        Droits des personnes
+                                    </h5>
+                                    <p class="mt-2 text-sm leading-6 text-slate-400">
+                                        Accès, rectification, opposition et effacement.
+                                    </p>
+                                </div>
+
+                                <div class="rounded-2xl border border-slate-700 bg-slate-950/30 p-5">
+                                    <i class="fa-solid fa-shield text-xl text-violet-300"></i>
+                                    <h5 class="mt-4 font-semibold text-white">
+                                        Sécurisation
+                                    </h5>
+                                    <p class="mt-2 text-sm leading-6 text-slate-400">
+                                        Protection adaptée des informations sensibles.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="mt-8 flex items-center gap-3 rounded-2xl border border-amber-400/15 bg-amber-400/5 px-5 py-4 text-amber-200">
+                                <i class="fa-solid fa-hourglass-half"></i>
+                                <p class="text-sm">
+                                    La certification sera ajoutée ici dès sa validation.
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="mt-4 flex items-center justify-center gap-2" aria-hidden="true">
+                        <button
+                            type="button"
+                            class="certification-dot h-2.5 w-7 rounded-full bg-sky-400 transition-all"
+                            data-slide="0"
+                            tabindex="-1"
+                        ></button>
+                        <button
+                            type="button"
+                            class="certification-dot h-2.5 w-2.5 rounded-full bg-slate-600 transition-all"
+                            data-slide="1"
+                            tabindex="-1"
+                        ></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Compétences -->
+        <section id="competences" class="border-y border-slate-800 bg-slate-950/25 py-28 lg:py-36">
+            <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                <div class="reveal">
+                    <span class="section-label">Compétences</span>
+
+                    <h2 class="mt-6 text-3xl font-bold text-white sm:text-4xl">
+                        Technologies et environnements maîtrisés
+                    </h2>
+
+                    <div class="mt-14 grid gap-7 md:grid-cols-2 xl:grid-cols-4">
+                        <!-- Systèmes -->
+                        <article class="skill-card glass-card rounded-3xl p-7">
+                            <div class="flex h-13 w-13 items-center justify-center rounded-2xl bg-sky-400/10 p-4 text-2xl text-sky-400">
+                                <i class="fa-solid fa-server"></i>
+                            </div>
+
+                            <h3 class="mt-5 text-xl font-bold text-white">Systèmes</h3>
+
+                            <div class="mt-6 grid grid-cols-2 gap-3">
+                                <div class="rounded-xl border border-slate-700 bg-slate-950/40 p-3 text-center">
+                                    <i class="devicon-windows11-original colored text-3xl"></i>
+                                    <p class="mt-2 text-xs font-medium">Windows Server</p>
+                                </div>
+
+                                <div class="rounded-xl border border-slate-700 bg-slate-950/40 p-3 text-center">
+                                    <i class="devicon-debian-plain colored text-3xl"></i>
+                                    <p class="mt-2 text-xs font-medium">Debian</p>
+                                </div>
+
+                                <div class="rounded-xl border border-slate-700 bg-slate-950/40 p-3 text-center">
+                                    <i class="fa-solid fa-sitemap text-3xl text-sky-400"></i>
+                                    <p class="mt-2 text-xs font-medium">Active Directory</p>
+                                </div>
+
+                                <div class="rounded-xl border border-slate-700 bg-slate-950/40 p-3 text-center">
+                                    <i class="fa-brands fa-microsoft text-3xl text-blue-400"></i>
+                                    <p class="mt-2 text-xs font-medium">WSUS</p>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Réseaux -->
+                        <article class="skill-card glass-card rounded-3xl p-7">
+                            <div class="flex h-13 w-13 items-center justify-center rounded-2xl bg-cyan-400/10 p-4 text-2xl text-cyan-400">
+                                <i class="fa-solid fa-network-wired"></i>
+                            </div>
+
+                            <h3 class="mt-5 text-xl font-bold text-white">
+                                Réseaux & Sécurité
+                            </h3>
+
+                            <div class="mt-6 grid grid-cols-2 gap-3">
+                                <div class="rounded-xl border border-slate-700 bg-slate-950/40 p-3 text-center">
+                                    <i class="fa-solid fa-diagram-project text-3xl text-sky-400"></i>
+                                    <p class="mt-2 text-xs font-medium">Cisco</p>
+                                </div>
+
+                                <div class="rounded-xl border border-slate-700 bg-slate-950/40 p-3 text-center">
+                                    <i class="fa-solid fa-shield-halved text-3xl text-red-400"></i>
+                                    <p class="mt-2 text-xs font-medium">pfSense</p>
+                                </div>
+
+                                <div class="rounded-xl border border-slate-700 bg-slate-950/40 p-3 text-center">
+                                    <i class="fa-solid fa-fire-flame-curved text-3xl text-orange-400"></i>
+                                    <p class="mt-2 text-xs font-medium">Pare-feu</p>
+                                </div>
+
+                                <div class="rounded-xl border border-slate-700 bg-slate-950/40 p-3 text-center">
+                                    <i class="fa-solid fa-route text-3xl text-emerald-400"></i>
+                                    <p class="mt-2 text-xs font-medium">Packet Tracer</p>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Virtualisation -->
+                        <article class="skill-card glass-card rounded-3xl p-7">
+                            <div class="flex h-13 w-13 items-center justify-center rounded-2xl bg-violet-400/10 p-4 text-2xl text-violet-300">
+                                <i class="fa-solid fa-cubes"></i>
+                            </div>
+
+                            <h3 class="mt-5 text-xl font-bold text-white">
+                                Virtualisation
+                            </h3>
+
+                            <div class="mt-6 grid grid-cols-2 gap-3">
+                                <div class="rounded-xl border border-slate-700 bg-slate-950/40 p-3 text-center">
+                                    <i class="fa-brands fa-microsoft text-3xl text-blue-400"></i>
+                                    <p class="mt-2 text-xs font-medium">Hyper-V</p>
+                                </div>
+
+                                <div class="rounded-xl border border-slate-700 bg-slate-950/40 p-3 text-center">
+                                    <i class="fa-solid fa-server text-3xl text-orange-400"></i>
+                                    <p class="mt-2 text-xs font-medium">Proxmox</p>
+                                </div>
+
+                                <div class="rounded-xl border border-slate-700 bg-slate-950/40 p-3 text-center">
+                                    <i class="devicon-virtualbox-plain colored text-3xl"></i>
+                                    <p class="mt-2 text-xs font-medium">VirtualBox</p>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Scripting -->
+                        <article class="skill-card glass-card rounded-3xl p-7">
+                            <div class="flex h-13 w-13 items-center justify-center rounded-2xl bg-emerald-400/10 p-4 text-2xl text-emerald-300">
+                                <i class="fa-solid fa-code"></i>
+                            </div>
+
+                            <h3 class="mt-5 text-xl font-bold text-white">Scripting</h3>
+
+                            <div class="mt-6 grid grid-cols-2 gap-3">
+                                <div class="rounded-xl border border-slate-700 bg-slate-950/40 p-3 text-center">
+                                    <i class="devicon-powershell-plain colored text-3xl"></i>
+                                    <p class="mt-2 text-xs font-medium">PowerShell</p>
+                                </div>
+
+                                <div class="rounded-xl border border-slate-700 bg-slate-950/40 p-3 text-center">
+                                    <i class="devicon-bash-plain text-3xl text-white"></i>
+                                    <p class="mt-2 text-xs font-medium">Bash</p>
+                                </div>
+
+                                <div class="rounded-xl border border-slate-700 bg-slate-950/40 p-3 text-center">
+                                    <i class="devicon-python-plain colored text-3xl"></i>
+                                    <p class="mt-2 text-xs font-medium">Python</p>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Parcours -->
+        <section id="parcours" class="py-28 lg:py-36">
+            <div class="mx-auto max-w-5xl px-6 lg:px-8">
+                <div class="reveal">
+                    <span class="section-label">Parcours</span>
+
+                    <h2 class="mt-6 text-3xl font-bold text-white sm:text-4xl">
+                        Formation et expériences
+                    </h2>
+
+                    <div class="relative mt-16 pl-9 sm:pl-12">
+                        <div class="timeline-line absolute bottom-0 left-[11px] top-1 w-px sm:left-[15px]"></div>
+
+                        <article class="relative pb-16">
+                            <div class="absolute -left-9 top-1 h-6 w-6 rounded-full border-4 border-slate-900 bg-sky-400 shadow-[0_0_20px_rgba(56,189,248,0.5)] sm:-left-12 sm:h-8 sm:w-8"></div>
+
+                            <p class="font-bold text-sky-400">2025 — Présent</p>
+                            <h3 class="mt-2 text-xl font-bold text-white">
+                                Préparation du BTS SIO option SISR
+                            </h3>
+                            <p class="mt-2 text-slate-400">Lycée Gustave Flaubert</p>
+                        </article>
+
+                        <article class="relative pb-16">
+                            <div class="absolute -left-9 top-1 h-6 w-6 rounded-full border-4 border-slate-900 bg-sky-400 sm:-left-12 sm:h-8 sm:w-8"></div>
+
+                            <p class="font-bold text-sky-400">Mai — Juin 2026</p>
+                            <h3 class="mt-2 text-xl font-bold text-white">
+                                Stage de première année — 5 semaines
+                            </h3>
+                            <p class="mt-4 leading-7 text-slate-300">
+                                Création de scripts de post-installation, clé bootable ISO
+                                Windows, déploiement d'un serveur WSUS, configuration d'un
+                                routeur et de caméras IP.
+                            </p>
+                        </article>
+
+                        <article class="relative">
+                            <div class="absolute -left-9 top-1 h-6 w-6 rounded-full border-4 border-slate-900 bg-slate-600 sm:-left-12 sm:h-8 sm:w-8"></div>
+
+                            <p class="font-bold text-sky-400">2025</p>
+                            <h3 class="mt-2 text-xl font-bold text-white">
+                                Baccalauréat STI2D
+                            </h3>
+                            <p class="mt-2 text-slate-400">Lycée Ferdinand Buisson</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projets -->
+        <section id="projets" class="border-y border-slate-800 bg-slate-950/25 py-28 lg:py-36">
+            <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                <div class="reveal">
+                    <span class="section-label">Projets</span>
+
+                    <h2 class="mt-6 text-3xl font-bold text-white sm:text-4xl">
+                        Réalisations techniques
+                    </h2>
+
+                    <div class="mt-14 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+                        <article class="project-card overflow-hidden rounded-3xl border border-slate-700 bg-slate-800">
+                            <div class="overflow-hidden">
+                                <img
+                                    class="project-image h-52 w-full object-cover"
+                                    src="https://images.unsplash.com/photo-1629654297299-c8506221ca97?auto=format&fit=crop&w=1200&q=80"
+                                    alt="Ordinateur illustrant la masterisation Windows"
+                                    loading="lazy"
+                                >
+                            </div>
+                            <div class="p-7">
+                                <i class="fa-brands fa-windows text-3xl text-sky-400"></i>
+                                <h3 class="mt-5 text-xl font-bold text-white">Masterisation</h3>
+                                <p class="mt-3 leading-7 text-slate-300">
+                                    Création d'une ISO Windows personnalisée et d'un script
+                                    de post-installation.
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="project-card overflow-hidden rounded-3xl border border-slate-700 bg-slate-800">
+                            <div class="overflow-hidden">
+                                <img
+                                    class="project-image h-52 w-full object-cover"
+                                    src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80"
+                                    alt="Infrastructure de serveurs"
+                                    loading="lazy"
+                                >
+                            </div>
+                            <div class="p-7">
+                                <i class="fa-solid fa-server text-3xl text-sky-400"></i>
+                                <h3 class="mt-5 text-xl font-bold text-white">Infrastructure</h3>
+                                <p class="mt-3 leading-7 text-slate-300">
+                                    Mise en place d'un serveur WSUS, configuration d'un
+                                    routeur et de caméras IP.
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="project-card overflow-hidden rounded-3xl border border-slate-700 bg-slate-800">
+                            <div class="overflow-hidden">
+                                <img
+                                    class="project-image h-52 w-full object-cover"
+                                    src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1200&q=80"
+                                    alt="Équipements réseau Cisco"
+                                    loading="lazy"
+                                >
+                            </div>
+                            <div class="p-7">
+                                <i class="fa-solid fa-network-wired text-3xl text-sky-400"></i>
+                                <h3 class="mt-5 text-xl font-bold text-white">Réseau Cisco</h3>
+                                <p class="mt-3 leading-7 text-slate-300">
+                                    Maquette de routage inter-VLAN et segmentation réseau.
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="project-card overflow-hidden rounded-3xl border border-slate-700 bg-slate-800">
+                            <div class="overflow-hidden">
+                                <img
+                                    class="project-image h-52 w-full object-cover"
+                                    src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1200&q=80"
+                                    alt="Illustration de cybersécurité"
+                                    loading="lazy"
+                                >
+                            </div>
+                            <div class="p-7">
+                                <i class="fa-solid fa-shield-halved text-3xl text-sky-400"></i>
+                                <h3 class="mt-5 text-xl font-bold text-white">Sécurité</h3>
+                                <p class="mt-3 leading-7 text-slate-300">
+                                    Déploiement et configuration d'un pare-feu pfSense.
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="project-card overflow-hidden rounded-3xl border border-slate-700 bg-slate-800 md:col-span-2 xl:col-span-1">
+                            <div class="overflow-hidden">
+                                <img
+                                    class="project-image h-52 w-full object-cover"
+                                    src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=80"
+                                    alt="Éditeur de code pour l'automatisation"
+                                    loading="lazy"
+                                >
+                            </div>
+                            <div class="p-7">
+                                <i class="fa-solid fa-code text-3xl text-sky-400"></i>
+                                <h3 class="mt-5 text-xl font-bold text-white">Automatisation</h3>
+                                <p class="mt-3 leading-7 text-slate-300">
+                                    Création d'outils d'administration en PowerShell.
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- E5 / E6 -->
+        <section id="epreuves" class="py-28 lg:py-36">
+            <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                <div class="reveal">
+                    <span class="section-label">Épreuves professionnelles</span>
+
+                    <h2 class="mt-6 text-3xl font-bold text-white sm:text-4xl">
+                        Épreuves E5 et E6
+                    </h2>
+
+                    <div class="mt-14 grid gap-8 lg:grid-cols-2">
+                        <!-- E5 -->
+                        <article class="glass-card rounded-3xl p-7 sm:p-9">
+                            <div class="flex items-center gap-4">
+                                <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-sky-400/10 text-2xl font-bold text-sky-400">
+                                    E5
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">
+                                        Support et mise à disposition de services informatiques
+                                    </h3>
+                                    <p class="mt-1 text-sm text-slate-400">
+                                        Présentation du parcours de professionnalisation
+                                    </p>
+                                </div>
+                            </div>
+
+                            <p class="mt-7 leading-8 text-slate-300">
+                                Mes réalisations démontrent ma capacité à gérer le patrimoine
+                                informatique, répondre aux incidents, développer la présence
+                                en ligne et travailler en mode projet. Le déploiement WSUS
+                                assure la gestion centralisée des mises à jour et le maintien
+                                en condition opérationnelle. La masterisation ISO standardise
+                                le déploiement des postes. Le routage Cisco met en œuvre la
+                                segmentation et la disponibilité des services réseau. Les
+                                scripts PowerShell automatisent les tâches d'administration
+                                et améliorent la qualité du support.
+                            </p>
+
+                            <div class="mt-7 flex flex-wrap gap-2">
+                                <span class="rounded-full border border-sky-400/20 bg-sky-400/10 px-3 py-1.5 text-sm text-sky-300">
+                                    Gérer le patrimoine informatique
+                                </span>
+                                <span class="rounded-full border border-sky-400/20 bg-sky-400/10 px-3 py-1.5 text-sm text-sky-300">
+                                    Répondre aux incidents
+                                </span>
+                                <span class="rounded-full border border-sky-400/20 bg-sky-400/10 px-3 py-1.5 text-sm text-sky-300">
+                                    Travailler en mode projet
+                                </span>
+                                <span class="rounded-full border border-sky-400/20 bg-sky-400/10 px-3 py-1.5 text-sm text-sky-300">
+                                    Mettre à disposition un service
+                                </span>
+                                <span class="rounded-full border border-sky-400/20 bg-sky-400/10 px-3 py-1.5 text-sm text-sky-300">
+                                    Développer son identité professionnelle
+                                </span>
+                                <span class="rounded-full border border-sky-400/20 bg-sky-400/10 px-3 py-1.5 text-sm text-sky-300">
+                                    Organiser son développement professionnel
+                                </span>
+                            </div>
+
+                            <div class="mt-8 grid gap-4 sm:grid-cols-2">
+                                <div class="rounded-2xl border border-slate-700 bg-slate-950/30 p-5">
+                                    <i class="fa-solid fa-server text-sky-400"></i>
+                                    <h4 class="mt-3 font-bold text-white">WSUS</h4>
+                                    <p class="mt-2 text-sm leading-6 text-slate-400">
+                                        Maintien en condition opérationnelle et gestion des mises à jour.
+                                    </p>
+                                </div>
+
+                                <div class="rounded-2xl border border-slate-700 bg-slate-950/30 p-5">
+                                    <i class="fa-brands fa-windows text-sky-400"></i>
+                                    <h4 class="mt-3 font-bold text-white">Masterisation ISO</h4>
+                                    <p class="mt-2 text-sm leading-6 text-slate-400">
+                                        Déploiement standardisé et mise à disposition des postes.
+                                    </p>
+                                </div>
+
+                                <div class="rounded-2xl border border-slate-700 bg-slate-950/30 p-5">
+                                    <i class="fa-solid fa-network-wired text-sky-400"></i>
+                                    <h4 class="mt-3 font-bold text-white">Routage Cisco</h4>
+                                    <p class="mt-2 text-sm leading-6 text-slate-400">
+                                        Segmentation en VLAN, routage et validation de la connectivité.
+                                    </p>
+                                </div>
+
+                                <div class="rounded-2xl border border-slate-700 bg-slate-950/30 p-5">
+                                    <i class="fa-solid fa-code text-sky-400"></i>
+                                    <h4 class="mt-3 font-bold text-white">PowerShell</h4>
+                                    <p class="mt-2 text-sm leading-6 text-slate-400">
+                                        Automatisation, fiabilisation et documentation des tâches.
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- E6 -->
+                        <article class="glass-card rounded-3xl p-7 sm:p-9">
+                            <div class="flex items-center gap-4">
+                                <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-violet-400/10 text-2xl font-bold text-violet-300">
+                                    E6
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">
+                                        Administration des systèmes et des réseaux
+                                    </h3>
+                                    <p class="mt-1 text-sm text-slate-400">
+                                        Conception et maintenance d'une solution d'infrastructure
+                                    </p>
+                                </div>
+                            </div>
+
+                            <p class="mt-7 leading-8 text-slate-300">
+                                Cette épreuve valorise les compétences mobilisées pour
+                                concevoir, déployer, administrer, sécuriser et documenter une
+                                infrastructure réseau. Les situations professionnelles
+                                présentées s'appuieront sur des solutions techniques
+                                reproductibles et justifiées.
+                            </p>
+
+                            <ul class="mt-7 space-y-4 text-slate-300">
+                                <li class="flex gap-3">
+                                    <i class="fa-solid fa-circle-check mt-1 text-violet-300"></i>
+                                    Installer, tester et déployer une solution d'infrastructure.
+                                </li>
+                                <li class="flex gap-3">
+                                    <i class="fa-solid fa-circle-check mt-1 text-violet-300"></i>
+                                    Administrer les systèmes, les réseaux et les services.
+                                </li>
+                                <li class="flex gap-3">
+                                    <i class="fa-solid fa-circle-check mt-1 text-violet-300"></i>
+                                    Sécuriser les accès et protéger les ressources.
+                                </li>
+                                <li class="flex gap-3">
+                                    <i class="fa-solid fa-circle-check mt-1 text-violet-300"></i>
+                                    Superviser, diagnostiquer et résoudre les dysfonctionnements.
+                                </li>
+                                <li class="flex gap-3">
+                                    <i class="fa-solid fa-circle-check mt-1 text-violet-300"></i>
+                                    Produire une documentation technique claire.
+                                </li>
+                            </ul>
+
+                            <div class="mt-9 rounded-2xl border border-violet-400/20 bg-violet-400/5 p-6">
+                                <p class="font-semibold text-violet-200">
+                                    Les documents et situations professionnelles associés à
+                                    l'épreuve seront ajoutés progressivement.
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Veille -->
+        <section id="veille" class="border-y border-slate-800 bg-slate-950/25 py-28 lg:py-36">
+            <div class="mx-auto max-w-5xl px-6 lg:px-8">
+                <article class="glass-card reveal rounded-3xl p-8 text-center sm:p-12">
+                    <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-sky-400/10 text-3xl text-sky-400">
+                        <i class="fa-solid fa-rss"></i>
+                    </div>
+
+                    <span class="section-label mt-7">Veille technologique</span>
+
+                    <h2 class="mt-6 text-3xl font-bold text-white">
+                        Sujet en cours de sélection
+                    </h2>
+
+                    <p class="mx-auto mt-5 max-w-2xl leading-8 text-slate-300">
+                        Cette section présentera prochainement une veille structurée sur une
+                        technologie ou une problématique liée aux systèmes, aux réseaux ou à
+                        la cybersécurité.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="py-28 lg:py-36">
+            <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                <div class="reveal">
+                    <span class="section-label">Contact</span>
+
+                    <h2 class="mt-6 text-3xl font-bold text-white sm:text-4xl">
+                        Échangeons autour de votre projet
+                    </h2>
+
+                    <div class="mt-14 grid gap-10 lg:grid-cols-[1.15fr_0.85fr]">
+                        <!-- Formulaire -->
+                        <form id="contact-form" class="glass-card rounded-3xl p-7 sm:p-9">
+                            <div class="grid gap-6 sm:grid-cols-2">
+                                <div>
+                                    <label for="name" class="mb-2 block text-sm font-semibold text-slate-200">
+                                        Nom
+                                    </label>
+                                    <input
+                                        id="name"
+                                        name="name"
+                                        type="text"
+                                        required
+                                        autocomplete="name"
+                                        class="form-input w-full rounded-xl border border-slate-700 bg-slate-950/50 px-4 py-3.5 text-white placeholder-slate-500 transition"
+                                        placeholder="Votre nom"
+                                    >
+                                </div>
+
+                                <div>
+                                    <label for="email" class="mb-2 block text-sm font-semibold text-slate-200">
+                                        Email
+                                    </label>
+                                    <input
+                                        id="email"
+                                        name="email"
+                                        type="email"
+                                        required
+                                        autocomplete="email"
+                                        class="form-input w-full rounded-xl border border-slate-700 bg-slate-950/50 px-4 py-3.5 text-white placeholder-slate-500 transition"
+                                        placeholder="vous@exemple.fr"
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="mt-6">
+                                <label for="subject" class="mb-2 block text-sm font-semibold text-slate-200">
+                                    Sujet
+                                </label>
+                                <input
+                                    id="subject"
+                                    name="subject"
+                                    type="text"
+                                    required
+                                    class="form-input w-full rounded-xl border border-slate-700 bg-slate-950/50 px-4 py-3.5 text-white placeholder-slate-500 transition"
+                                    placeholder="Objet de votre message"
+                                >
+                            </div>
+
+                            <div class="mt-6">
+                                <label for="message" class="mb-2 block text-sm font-semibold text-slate-200">
+                                    Message
+                                </label>
+                                <textarea
+                                    id="message"
+                                    name="message"
+                                    rows="6"
+                                    required
+                                    class="form-input w-full resize-none rounded-xl border border-slate-700 bg-slate-950/50 px-4 py-3.5 text-white placeholder-slate-500 transition"
+                                    placeholder="Décrivez votre demande..."
+                                ></textarea>
+                            </div>
+
+                            <button
+                                type="submit"
+                                class="mt-7 inline-flex items-center gap-2 rounded-xl border border-sky-400 bg-sky-400 px-6 py-3.5 font-bold text-slate-950 transition hover:bg-sky-300"
+                            >
+                                <i class="fa-solid fa-paper-plane"></i>
+                                Envoyer le message
+                            </button>
+
+                            <p
+                                id="form-status"
+                                class="mt-4 hidden rounded-xl border px-4 py-3 text-sm"
+                                role="status"
+                                aria-live="polite"
+                            ></p>
+                        </form>
+
+                        <!-- Coordonnées -->
+                        <aside class="space-y-6">
+                            <div class="glass-card rounded-3xl p-7">
+                                <h3 class="text-xl font-bold text-white">
+                                    Coordonnées directes
+                                </h3>
+
+                                <div class="mt-7 space-y-4">
+                                    <a
+                                        href="mailto:contact@jabir-laghribi.fr"
+                                        class="flex items-center gap-4 rounded-2xl border border-slate-700 bg-slate-950/30 p-4 transition hover:border-sky-400/50"
+                                    >
+                                        <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-sky-400/10 text-sky-400">
+                                            <i class="fa-solid fa-envelope"></i>
+                                        </span>
+                                        <span>
+                                            <span class="block text-sm text-slate-400">Email</span>
+                                            <span class="mt-1 block font-semibold text-white">
+                                                contact@jabir-laghribi.fr
+                                            </span>
+                                        </span>
+                                    </a>
+
+                                    <a
+                                        href="https://www.linkedin.com/in/jabir-laghribi-494b08387"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="flex items-center gap-4 rounded-2xl border border-slate-700 bg-slate-950/30 p-4 transition hover:border-sky-400/50"
+                                    >
+                                        <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-sky-400/10 text-sky-400">
+                                            <i class="fa-brands fa-linkedin-in"></i>
+                                        </span>
+                                        <span>
+                                            <span class="block text-sm text-slate-400">LinkedIn</span>
+                                            <span class="mt-1 block font-semibold text-white">
+                                                Jabir LAGHRIBI
+                                            </span>
+                                        </span>
+                                    </a>
+
+                                    <a
+                                        href="https://github.com/jlaghribi1-hash"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="flex items-center gap-4 rounded-2xl border border-slate-700 bg-slate-950/30 p-4 transition hover:border-sky-400/50"
+                                    >
+                                        <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-slate-800 text-white">
+                                            <i class="fa-brands fa-github"></i>
+                                        </span>
+                                        <span>
+                                            <span class="block text-sm text-slate-400">GitHub</span>
+                                            <span class="mt-1 block font-semibold text-white">
+                                                jlaghribi1-hash
+                                            </span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="rounded-3xl border border-sky-400/20 bg-gradient-to-br from-sky-400/10 to-blue-600/5 p-7">
+                                <i class="fa-solid fa-graduation-cap text-3xl text-sky-400"></i>
+                                <h3 class="mt-5 text-xl font-bold text-white">
+                                    Recherche d'opportunités
+                                </h3>
+                                <p class="mt-3 leading-7 text-slate-300">
+                                    Je suis disponible pour échanger autour d'un stage, d'une
+                                    alternance ou d'un projet lié aux systèmes et réseaux.
+                                </p>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Pied de page -->
+    <footer class="border-t border-slate-800 bg-slate-950/60">
+        <div class="mx-auto flex max-w-7xl flex-col gap-5 px-6 py-8 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left lg:px-8">
+            <p class="text-sm text-slate-400">
+                © <span id="current-year"></span>
+                <span class="text-sky-400 font-bold">Jabir</span>
+                <span class="text-white font-bold">LAGHRIBI</span>.
+                Tous droits réservés.
+            </p>
+
+            <div class="flex items-center justify-center gap-3">
+                <a
+                    href="https://www.linkedin.com/in/jabir-laghribi-494b08387"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-700 text-slate-300 transition hover:border-sky-400 hover:text-sky-400"
+                    aria-label="LinkedIn"
+                >
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+
+                <a
+                    href="https://github.com/jlaghribi1-hash"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-700 text-slate-300 transition hover:border-sky-400 hover:text-sky-400"
+                    aria-label="GitHub"
+                >
+                    <i class="fa-brands fa-github"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        "use strict";
+
+        document.addEventListener("DOMContentLoaded", function () {
+            var mobileMenuButton = document.getElementById("mobile-menu-button");
+            var mobileMenu = document.getElementById("mobile-menu");
+            var mobileMenuIcon = document.getElementById("mobile-menu-icon");
+            var mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
+            var desktopNavLinks = document.querySelectorAll(".nav-link");
+            var revealElements = document.querySelectorAll(".reveal");
+            var sections = document.querySelectorAll("main section[id]");
+            var currentYear = document.getElementById("current-year");
+            var contactForm = document.getElementById("contact-form");
+            var formStatus = document.getElementById("form-status");
+
+            var certificationsTrack = document.getElementById("certifications-track");
+            var previousButton = document.getElementById("certification-previous");
+            var nextButton = document.getElementById("certification-next");
+            var certificationSlides = document.querySelectorAll(".certification-slide");
+            var certificationDots = document.querySelectorAll(".certification-dot");
+
+            if (currentYear) {
+                currentYear.textContent = new Date().getFullYear();
+            }
+
+            function closeMobileMenu() {
+                if (!mobileMenu || !mobileMenuButton || !mobileMenuIcon) {
+                    return;
+                }
+
+                mobileMenu.classList.add("hidden");
+                mobileMenuButton.setAttribute("aria-expanded", "false");
+                mobileMenuIcon.classList.remove("fa-xmark");
+                mobileMenuIcon.classList.add("fa-bars");
+            }
+
+            function toggleMobileMenu() {
+                if (!mobileMenu || !mobileMenuButton || !mobileMenuIcon) {
+                    return;
+                }
+
+                var isHidden = mobileMenu.classList.contains("hidden");
+
+                if (isHidden) {
+                    mobileMenu.classList.remove("hidden");
+                    mobileMenuButton.setAttribute("aria-expanded", "true");
+                    mobileMenuIcon.classList.remove("fa-bars");
+                    mobileMenuIcon.classList.add("fa-xmark");
+                } else {
+                    closeMobileMenu();
+                }
+            }
+
+            if (mobileMenuButton) {
+                mobileMenuButton.addEventListener("click", toggleMobileMenu);
+            }
+
+            mobileNavLinks.forEach(function (link) {
+                link.addEventListener("click", closeMobileMenu);
+            });
+
+            window.addEventListener("resize", function () {
+                if (window.innerWidth >= 1024) {
+                    closeMobileMenu();
+                }
+            });
+
+            if ("IntersectionObserver" in window) {
+                var revealObserver = new IntersectionObserver(
+                    function (entries, observer) {
+                        entries.forEach(function (entry) {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add("visible");
+                                observer.unobserve(entry.target);
+                            }
+                        });
+                    },
+                    {
+                        threshold: 0.12
+                    }
+                );
+
+                revealElements.forEach(function (element) {
+                    revealObserver.observe(element);
+                });
+            } else {
+                revealElements.forEach(function (element) {
+                    element.classList.add("visible");
+                });
+            }
+
+            function updateActiveNavigation() {
+                var scrollPosition = window.scrollY + 150;
+                var activeSectionId = "";
+
+                sections.forEach(function (section) {
+                    var sectionTop = section.offsetTop;
+                    var sectionHeight = section.offsetHeight;
+
+                    if (
+                        scrollPosition >= sectionTop &&
+                        scrollPosition < sectionTop + sectionHeight
+                    ) {
+                        activeSectionId = section.getAttribute("id");
+                    }
+                });
+
+                desktopNavLinks.forEach(function (link) {
+                    var target = link.getAttribute("href");
+
+                    link.classList.remove("active");
+
+                    if (target === "#" + activeSectionId) {
+                        link.classList.add("active");
+                    }
+                });
+            }
+
+            window.addEventListener("scroll", updateActiveNavigation, {
+                passive: true
+            });
+
+            updateActiveNavigation();
+
+            function getSlideDistance() {
+                if (!certificationsTrack || certificationSlides.length === 0) {
+                    return 0;
+                }
+
+                var firstSlide = certificationSlides[0];
+                var trackStyles = window.getComputedStyle(certificationsTrack);
+                var gapValue = parseFloat(trackStyles.columnGap || trackStyles.gap || "0");
+
+                return firstSlide.getBoundingClientRect().width + gapValue;
+            }
+
+            function getCurrentSlideIndex() {
+                if (!certificationsTrack) {
+                    return 0;
+                }
+
+                var distance = getSlideDistance();
+
+                if (distance <= 0) {
+                    return 0;
+                }
+
+                return Math.round(certificationsTrack.scrollLeft / distance);
+            }
+
+            function scrollToCertification(index) {
+                if (!certificationsTrack || certificationSlides.length === 0) {
+                    return;
+                }
+
+                var safeIndex = Math.max(
+                    0,
+                    Math.min(index, certificationSlides.length - 1)
+                );
+
+                certificationsTrack.scrollTo({
+                    left: getSlideDistance() * safeIndex,
+                    behavior: "smooth"
+                });
+            }
+
+            function updateCertificationControls() {
+                if (!certificationsTrack || certificationSlides.length === 0) {
+                    return;
+                }
+
+                var currentIndex = getCurrentSlideIndex();
+                var maximumScroll =
+                    certificationsTrack.scrollWidth - certificationsTrack.clientWidth;
+                var atBeginning = certificationsTrack.scrollLeft <= 5;
+                var atEnd =
+                    certificationsTrack.scrollLeft >= maximumScroll - 5 ||
+                    maximumScroll <= 5;
+
+                if (previousButton) {
+                    previousButton.disabled = atBeginning;
+                }
+
+                if (nextButton) {
+                    nextButton.disabled = atEnd;
+                }
+
+                certificationDots.forEach(function (dot, index) {
+                    if (index === currentIndex) {
+                        dot.classList.remove("h-2.5", "w-2.5", "bg-slate-600");
+                        dot.classList.add("h-2.5", "w-7", "bg-sky-400");
+                    } else {
+                        dot.classList.remove("h-2.5", "w-7", "bg-sky-400");
+                        dot.classList.add("h-2.5", "w-2.5", "bg-slate-600");
+                    }
+                });
+            }
+
+            if (previousButton) {
+                previousButton.addEventListener("click", function () {
+                    scrollToCertification(getCurrentSlideIndex() - 1);
+                });
+            }
+
+            if (nextButton) {
+                nextButton.addEventListener("click", function () {
+                    scrollToCertification(getCurrentSlideIndex() + 1);
+                });
+            }
+
+            certificationDots.forEach(function (dot) {
+                dot.addEventListener("click", function () {
+                    var slideIndex = parseInt(dot.getAttribute("data-slide"), 10);
+
+                    if (!isNaN(slideIndex)) {
+                        scrollToCertification(slideIndex);
+                    }
+                });
+            });
+
+            if (certificationsTrack) {
+                var scrollUpdateTimer = null;
+
+                certificationsTrack.addEventListener(
+                    "scroll",
+                    function () {
+                        window.clearTimeout(scrollUpdateTimer);
+
+                        scrollUpdateTimer = window.setTimeout(function () {
+                            updateCertificationControls();
+                        }, 80);
+                    },
+                    {
+                        passive: true
+                    }
+                );
+
+                certificationsTrack.addEventListener(
+                    "wheel",
+                    function (event) {
+                        var maximumScroll =
+                            certificationsTrack.scrollWidth -
+                            certificationsTrack.clientWidth;
+
+                        if (maximumScroll <= 0) {
+                            return;
+                        }
+
+                        var movement =
+                            Math.abs(event.deltaX) > Math.abs(event.deltaY)
+                                ? event.deltaX
+                                : event.deltaY;
+
+                        var movingRight = movement > 0;
+                        var movingLeft = movement < 0;
+                        var canMoveRight =
+                            certificationsTrack.scrollLeft < maximumScroll - 2;
+                        var canMoveLeft = certificationsTrack.scrollLeft > 2;
+
+                        if (
+                            (movingRight && canMoveRight) ||
+                            (movingLeft && canMoveLeft)
+                        ) {
+                            event.preventDefault();
+                            certificationsTrack.scrollLeft += movement;
+                        }
+                    },
+                    {
+                        passive: false
+                    }
+                );
+            }
+
+            window.addEventListener("resize", updateCertificationControls);
+
+            window.setTimeout(function () {
+                updateCertificationControls();
+            }, 150);
+
+            if (contactForm && formStatus) {
+                contactForm.addEventListener("submit", function (event) {
+                    event.preventDefault();
+
+                    var nameInput = document.getElementById("name");
+                    var emailInput = document.getElementById("email");
+                    var subjectInput = document.getElementById("subject");
+                    var messageInput = document.getElementById("message");
+
+                    var name = nameInput ? nameInput.value.trim() : "";
+                    var email = emailInput ? emailInput.value.trim() : "";
+                    var subject = subjectInput ? subjectInput.value.trim() : "";
+                    var message = messageInput ? messageInput.value.trim() : "";
+
+                    if (!name || !email || !subject || !message) {
+                        formStatus.className =
+                            "mt-4 rounded-xl border border-red-400/30 bg-red-400/10 px-4 py-3 text-sm text-red-300";
+
+                        formStatus.textContent =
+                            "Veuillez remplir tous les champs du formulaire.";
+
+                        return;
+                    }
+
+                    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                    if (!emailPattern.test(email)) {
+                        formStatus.className =
+                            "mt-4 rounded-xl border border-red-400/30 bg-red-400/10 px-4 py-3 text-sm text-red-300";
+
+                        formStatus.textContent =
+                            "Veuillez saisir une adresse email valide.";
+
+                        return;
+                    }
+
+                    formStatus.className =
+                        "mt-4 rounded-xl border border-emerald-400/30 bg-emerald-400/10 px-4 py-3 text-sm text-emerald-300";
+
+                    formStatus.textContent =
+                        "Votre message a bien été préparé. Le formulaire devra être relié à un service d'envoi pour être transmis automatiquement.";
+
+                    contactForm.reset();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
