@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="fr" class="scroll-smooth">
 <head>
@@ -8,33 +9,24 @@
         name="description"
         content="Portfolio de Jabir LAGHRIBI, étudiant en BTS SIO option SISR, spécialisé en administration systèmes, réseaux, cybersécurité et automatisation."
     >
+    <meta name="author" content="Jabir LAGHRIBI">
 
-    <title>Jabir LAGHRIBI — Portfolio BTS SIO SISR</title>
+    <title>Jabir LAGHRIBI | Portfolio BTS SIO SISR</title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ["Inter", "sans-serif"]
-                    },
                     boxShadow: {
-                        premium: "0 25px 70px rgba(2, 132, 199, 0.15)"
+                        soft: "0 20px 50px -25px rgba(15, 23, 42, 0.20)"
                     }
                 }
             }
         };
     </script>
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
 
     <!-- Font Awesome -->
     <link
@@ -51,69 +43,42 @@
     <style>
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 90px;
         }
 
         body {
             overflow-x: hidden;
         }
 
-        section {
-            scroll-margin-top: 100px;
-        }
-
         .glass {
-            background: rgba(15, 23, 42, 0.66);
-            border: 1px solid rgba(148, 163, 184, 0.14);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.88);
+            border: 1px solid rgba(226, 232, 240, 0.95);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 20px 50px -30px rgba(15, 23, 42, 0.22);
         }
 
-        .card-hover {
-            transition:
-                transform 0.35s ease,
-                border-color 0.35s ease,
-                box-shadow 0.35s ease;
-        }
-
-        .card-hover:hover {
-            transform: translateY(-7px);
-            border-color: rgba(56, 189, 248, 0.42);
-            box-shadow: 0 25px 60px rgba(2, 132, 199, 0.14);
-        }
-
-        .nav-link {
-            position: relative;
-            transition: color 0.25s ease;
-        }
-
-        .nav-link::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: -8px;
-            width: 0;
-            height: 2px;
-            border-radius: 999px;
-            background: #38bdf8;
-            transition: width 0.25s ease;
-        }
-
-        .nav-link:hover::after,
-        .nav-link.active::after {
-            width: 100%;
-        }
-
-        .nav-link:hover,
-        .nav-link.active {
-            color: #38bdf8;
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 1px solid rgb(186 230 253);
+            border-radius: 9999px;
+            background: rgb(240 249 255);
+            padding: 0.45rem 0.85rem;
+            color: rgb(3 105 161);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
         }
 
         .reveal {
             opacity: 0;
-            transform: translateY(32px);
+            transform: translateY(28px);
             transition:
-                opacity 0.75s ease,
-                transform 0.75s ease;
+                opacity 700ms ease,
+                transform 700ms ease;
         }
 
         .reveal.visible {
@@ -121,31 +86,31 @@
             transform: translateY(0);
         }
 
-        .blob {
-            position: fixed;
-            z-index: -1;
-            border-radius: 9999px;
-            filter: blur(95px);
-            pointer-events: none;
-            opacity: 0.17;
+        .nav-link.active {
+            color: rgb(3 105 161);
+            background: rgb(240 249 255);
         }
 
-        .skill-logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 48px;
-            height: 48px;
-            flex-shrink: 0;
-            border-radius: 14px;
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid rgba(148, 163, 184, 0.16);
-            font-size: 27px;
+        .skill-card {
+            transition:
+                transform 250ms ease,
+                box-shadow 250ms ease,
+                border-color 250ms ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-4px);
+            border-color: rgb(186 230 253);
+            box-shadow: 0 18px 40px -25px rgba(3, 105, 161, 0.35);
+        }
+
+        .certification-viewport {
+            overflow: hidden;
         }
 
         .certification-track {
             display: flex;
-            transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+            transition: transform 500ms ease;
             will-change: transform;
         }
 
@@ -153,42 +118,52 @@
             min-width: 100%;
         }
 
-        .progress-fill {
-            width: 0;
-            transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+        .progress-track {
+            height: 0.45rem;
+            overflow: hidden;
+            border-radius: 9999px;
+            background: rgb(226 232 240);
         }
 
-        .certification-slide.is-active .progress-fill {
+        .progress-bar {
+            width: 0;
+            height: 100%;
+            border-radius: 9999px;
+            background: rgb(2 132 199);
+            transition: width 1.1s ease;
+        }
+
+        .progress-bar.animate {
             width: var(--progress);
         }
 
-        .carousel-dot {
-            width: 9px;
-            height: 9px;
-            border-radius: 999px;
-            background: #475569;
+        .timeline-line {
+            background: linear-gradient(
+                to bottom,
+                rgb(2 132 199),
+                rgb(148 163 184),
+                rgb(226 232 240)
+            );
+        }
+
+        .project-card {
             transition:
-                width 0.3s ease,
-                background-color 0.3s ease;
+                transform 250ms ease,
+                box-shadow 250ms ease,
+                border-color 250ms ease;
         }
 
-        .carousel-dot.active {
-            width: 30px;
-            background: #38bdf8;
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: rgb(186 230 253);
+            box-shadow: 0 22px 50px -28px rgba(15, 23, 42, 0.28);
         }
 
-        .form-field {
-            transition:
-                border-color 0.25s ease,
-                box-shadow 0.25s ease,
-                background-color 0.25s ease;
-        }
-
-        .form-field:focus {
-            border-color: #38bdf8;
-            box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.1);
-            background: rgba(15, 23, 42, 0.95);
-            outline: none;
+        .soft-grid {
+            background-image:
+                linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+            background-size: 42px 42px;
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -202,51 +177,78 @@
                 transition: none;
             }
 
-            .card-hover,
             .certification-track,
-            .progress-fill {
+            .progress-bar {
                 transition: none;
             }
         }
     </style>
 </head>
 
-<body class="bg-slate-900 font-sans text-slate-300 antialiased selection:bg-sky-400 selection:text-slate-950">
+<body class="bg-slate-50 text-slate-800 antialiased">
 
-    <!-- Formes abstraites d'arrière-plan -->
-    <div class="blob left-[-130px] top-[80px] h-[360px] w-[360px] bg-sky-500"></div>
-    <div class="blob right-[-160px] top-[520px] h-[420px] w-[420px] bg-indigo-500"></div>
-    <div class="blob bottom-[-180px] left-[30%] h-[420px] w-[420px] bg-cyan-500"></div>
+    <!-- Décor de fond discret -->
+    <div class="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+        <div class="absolute -left-32 top-32 h-96 w-96 rounded-full bg-sky-200 opacity-20 blur-3xl"></div>
+        <div class="absolute right-0 top-1/3 h-80 w-80 rounded-full bg-slate-300 opacity-20 blur-3xl"></div>
+        <div class="absolute bottom-0 left-1/3 h-72 w-72 rounded-full bg-blue-100 opacity-20 blur-3xl"></div>
+    </div>
 
     <!-- Navigation -->
-    <header class="fixed top-0 z-50 w-full border-b border-slate-700 bg-slate-950/80 backdrop-blur-xl">
+    <header class="fixed top-0 z-50 w-full border-b border-slate-200 bg-white/90 text-slate-800 backdrop-blur-xl">
         <nav
-            class="mx-auto flex h-20 max-w-7xl items-center justify-between gap-6 px-5 sm:px-8"
+            class="mx-auto flex h-20 max-w-7xl items-center justify-between gap-4 px-5 lg:px-8"
             aria-label="Navigation principale"
         >
+            <!-- Logo -->
             <a href="#accueil" class="shrink-0 text-base tracking-tight sm:text-lg">
-                <span class="text-sky-400 font-bold">Jabir</span>
-                <span class="text-white font-bold">LAGHRIBI</span>
+                <span class="font-bold text-sky-700">Jabir</span>
+                <span class="font-bold text-slate-900">LAGHRIBI</span>
             </a>
 
-            <div class="hidden items-center gap-4 text-sm font-medium text-slate-300 xl:flex">
-                <a href="#accueil" class="nav-link">Accueil</a>
-                <a href="#apropos" class="nav-link">À propos</a>
-                <a href="#competences" class="nav-link">Compétences</a>
-                <a href="#parcours" class="nav-link">Parcours</a>
-                <a href="#projets" class="nav-link">Projets</a>
-                <a href="#epreuves" class="nav-link">E5/E6</a>
-                <a href="#veille" class="nav-link">Veille</a>
-                <a href="#contact" class="nav-link">Contact</a>
+            <!-- Navigation bureau -->
+            <div class="hidden items-center gap-1 xl:flex">
+                <a href="#accueil" class="nav-link rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-sky-700">
+                    Accueil
+                </a>
+
+                <a href="#apropos" class="nav-link rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-sky-700">
+                    À propos
+                </a>
+
+                <a href="#competences" class="nav-link rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-sky-700">
+                    Compétences
+                </a>
+
+                <a href="#parcours" class="nav-link rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-sky-700">
+                    Parcours
+                </a>
+
+                <a href="#projets" class="nav-link rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-sky-700">
+                    Projets
+                </a>
+
+                <a href="#epreuves" class="nav-link rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-sky-700">
+                    E5/E6
+                </a>
+
+                <a href="#veille" class="nav-link rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-sky-700">
+                    Veille
+                </a>
+
+                <a href="#contact" class="nav-link rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-sky-700">
+                    Contact
+                </a>
             </div>
 
-            <div class="hidden shrink-0 items-center gap-2 sm:flex">
+            <!-- Réseaux sociaux -->
+            <div class="ml-auto hidden items-center gap-2 sm:flex xl:ml-0">
                 <a
                     href="https://www.linkedin.com/in/jabir-laghribi-494b08387"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Profil LinkedIn de Jabir LAGHRIBI"
-                    class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-sky-500/40 bg-sky-500/10 text-sky-400 transition hover:-translate-y-0.5 hover:border-sky-400 hover:bg-sky-400 hover:text-slate-950"
+                    class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-700"
                 >
                     <i class="fa-brands fa-linkedin-in"></i>
                 </a>
@@ -256,44 +258,66 @@
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Profil GitHub de Jabir LAGHRIBI"
-                    class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-600 bg-slate-800/70 text-white transition hover:-translate-y-0.5 hover:border-sky-400 hover:text-sky-400"
+                    class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-100 hover:text-slate-950"
                 >
                     <i class="fa-brands fa-github"></i>
                 </a>
             </div>
 
+            <!-- Bouton menu mobile -->
             <button
                 id="mobile-menu-button"
                 type="button"
                 aria-label="Ouvrir le menu"
-                aria-expanded="false"
                 aria-controls="mobile-menu"
-                class="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-slate-700 bg-slate-800/70 text-white transition hover:border-sky-400 hover:text-sky-400 xl:hidden"
+                aria-expanded="false"
+                class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:bg-slate-100 xl:hidden"
             >
                 <i id="mobile-menu-icon" class="fa-solid fa-bars"></i>
             </button>
         </nav>
 
-        <div
-            id="mobile-menu"
-            class="hidden border-t border-slate-800 bg-slate-950/95 px-5 py-5 backdrop-blur-xl xl:hidden"
-        >
-            <div class="mx-auto grid max-w-7xl gap-2">
-                <a href="#accueil" class="mobile-link rounded-xl px-4 py-3 transition hover:bg-slate-800 hover:text-sky-400">Accueil</a>
-                <a href="#apropos" class="mobile-link rounded-xl px-4 py-3 transition hover:bg-slate-800 hover:text-sky-400">À propos</a>
-                <a href="#competences" class="mobile-link rounded-xl px-4 py-3 transition hover:bg-slate-800 hover:text-sky-400">Compétences</a>
-                <a href="#parcours" class="mobile-link rounded-xl px-4 py-3 transition hover:bg-slate-800 hover:text-sky-400">Parcours</a>
-                <a href="#projets" class="mobile-link rounded-xl px-4 py-3 transition hover:bg-slate-800 hover:text-sky-400">Projets</a>
-                <a href="#epreuves" class="mobile-link rounded-xl px-4 py-3 transition hover:bg-slate-800 hover:text-sky-400">E5/E6</a>
-                <a href="#veille" class="mobile-link rounded-xl px-4 py-3 transition hover:bg-slate-800 hover:text-sky-400">Veille</a>
-                <a href="#contact" class="mobile-link rounded-xl px-4 py-3 transition hover:bg-slate-800 hover:text-sky-400">Contact</a>
+        <!-- Menu mobile -->
+        <div id="mobile-menu" class="hidden border-t border-slate-200 bg-white xl:hidden">
+            <div class="mx-auto grid max-w-7xl gap-1 px-5 py-5">
+                <a href="#accueil" class="mobile-link rounded-lg px-4 py-3 text-sm font-medium text-slate-700 hover:bg-slate-100 hover:text-sky-700">
+                    Accueil
+                </a>
 
-                <div class="mt-3 flex gap-3 border-t border-slate-800 pt-5">
+                <a href="#apropos" class="mobile-link rounded-lg px-4 py-3 text-sm font-medium text-slate-700 hover:bg-slate-100 hover:text-sky-700">
+                    À propos
+                </a>
+
+                <a href="#competences" class="mobile-link rounded-lg px-4 py-3 text-sm font-medium text-slate-700 hover:bg-slate-100 hover:text-sky-700">
+                    Compétences
+                </a>
+
+                <a href="#parcours" class="mobile-link rounded-lg px-4 py-3 text-sm font-medium text-slate-700 hover:bg-slate-100 hover:text-sky-700">
+                    Parcours
+                </a>
+
+                <a href="#projets" class="mobile-link rounded-lg px-4 py-3 text-sm font-medium text-slate-700 hover:bg-slate-100 hover:text-sky-700">
+                    Projets
+                </a>
+
+                <a href="#epreuves" class="mobile-link rounded-lg px-4 py-3 text-sm font-medium text-slate-700 hover:bg-slate-100 hover:text-sky-700">
+                    E5/E6
+                </a>
+
+                <a href="#veille" class="mobile-link rounded-lg px-4 py-3 text-sm font-medium text-slate-700 hover:bg-slate-100 hover:text-sky-700">
+                    Veille
+                </a>
+
+                <a href="#contact" class="mobile-link rounded-lg px-4 py-3 text-sm font-medium text-slate-700 hover:bg-slate-100 hover:text-sky-700">
+                    Contact
+                </a>
+
+                <div class="mt-3 flex gap-3 border-t border-slate-200 pt-4 sm:hidden">
                     <a
                         href="https://www.linkedin.com/in/jabir-laghribi-494b08387"
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="inline-flex items-center gap-2 rounded-xl border border-sky-500/40 bg-sky-500/10 px-4 py-3 text-sm font-semibold text-sky-400"
+                        class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700"
                     >
                         <i class="fa-brands fa-linkedin-in"></i>
                         LinkedIn
@@ -303,7 +327,7 @@
                         href="https://github.com/jlaghribi1-hash"
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="inline-flex items-center gap-2 rounded-xl border border-slate-600 bg-slate-800 px-4 py-3 text-sm font-semibold text-white"
+                        class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700"
                     >
                         <i class="fa-brands fa-github"></i>
                         GitHub
@@ -315,24 +339,26 @@
 
     <main>
         <!-- Accueil -->
-        <section id="accueil" class="relative flex min-h-screen items-center px-5 pb-24 pt-36 sm:px-8">
-            <div class="mx-auto grid w-full max-w-7xl items-center gap-16 lg:grid-cols-[1.15fr_0.85fr]">
-                <div class="reveal">
-                    <div class="mb-7 inline-flex items-center gap-3 rounded-full border border-sky-500/30 bg-sky-500/10 px-4 py-2 text-sm font-medium text-sky-300">
-                        <span class="h-2 w-2 animate-pulse rounded-full bg-emerald-400"></span>
-                        Administration systèmes, réseaux & cybersécurité
-                    </div>
+        <section id="accueil" class="relative flex min-h-screen items-center overflow-hidden pb-20 pt-32">
+            <div class="absolute inset-0 -z-10 soft-grid opacity-60"></div>
 
-                    <h1 class="max-w-5xl text-5xl font-extrabold leading-tight tracking-tight sm:text-6xl lg:text-7xl">
-                        <span class="text-sky-400 font-bold">Jabir</span>
-                        <span class="text-white font-bold">LAGHRIBI</span>
+            <div class="mx-auto grid w-full max-w-7xl items-center gap-16 px-5 lg:grid-cols-[1.15fr_0.85fr] lg:px-8">
+                <div class="reveal">
+                    <span class="section-label">
+                        <i class="fa-solid fa-network-wired"></i>
+                        Portfolio BTS SIO SISR
+                    </span>
+
+                    <h1 class="mt-7 text-5xl font-black leading-tight tracking-tight sm:text-6xl lg:text-7xl">
+                        <span class="font-bold text-sky-700">Jabir</span>
+                        <span class="font-bold text-slate-900">LAGHRIBI</span>
                     </h1>
 
-                    <p class="mt-6 text-xl font-semibold text-sky-400 sm:text-2xl">
+                    <p class="mt-5 text-xl font-semibold text-sky-700 sm:text-2xl">
                         Étudiant en BTS SIO - Option SISR
                     </p>
 
-                    <p class="mt-7 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
+                    <p class="mt-7 max-w-2xl text-lg leading-8 text-slate-600">
                         Futur administrateur systèmes et réseaux, passionné par
                         l'infrastructure, la sécurité et l'automatisation.
                     </p>
@@ -340,18 +366,18 @@
                     <div class="mt-10 flex flex-wrap items-center gap-4">
                         <a
                             href="#projets"
-                            class="inline-flex items-center gap-3 rounded-xl border border-sky-400 bg-sky-400 px-5 py-3 font-semibold text-slate-950 transition hover:-translate-y-1 hover:bg-sky-300"
+                            class="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white shadow-md transition hover:bg-sky-700"
                         >
-                            <i class="fa-solid fa-diagram-project"></i>
+                            <i class="fa-solid fa-folder-open"></i>
                             Voir les projets
                         </a>
 
                         <a
                             href="./cv.pdf"
                             download
-                            class="inline-flex items-center gap-3 rounded-xl border border-sky-500/60 bg-slate-800/70 px-5 py-3 font-semibold text-white transition hover:-translate-y-1 hover:border-sky-400 hover:text-sky-400"
+                            class="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 shadow-sm transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-800"
                         >
-                            <i class="fa-solid fa-file-pdf text-red-400"></i>
+                            <i class="fa-solid fa-file-pdf"></i>
                             Télécharger mon CV
                         </a>
 
@@ -359,9 +385,9 @@
                             href="https://www.linkedin.com/in/jabir-laghribi-494b08387"
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="inline-flex items-center gap-3 rounded-xl border border-sky-500/60 bg-slate-800/70 px-5 py-3 font-semibold text-white transition hover:-translate-y-1 hover:border-sky-400 hover:text-sky-400"
+                            class="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 shadow-sm transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-800"
                         >
-                            <i class="fa-brands fa-linkedin-in text-sky-400"></i>
+                            <i class="fa-brands fa-linkedin-in"></i>
                             LinkedIn
                         </a>
 
@@ -369,7 +395,7 @@
                             href="https://github.com/jlaghribi1-hash"
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="inline-flex items-center gap-3 rounded-xl border border-slate-600 bg-slate-800/70 px-5 py-3 font-semibold text-white transition hover:-translate-y-1 hover:border-sky-400 hover:text-sky-400"
+                            class="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 shadow-sm transition hover:bg-slate-100"
                         >
                             <i class="fa-brands fa-github"></i>
                             GitHub
@@ -378,45 +404,55 @@
                 </div>
 
                 <div class="reveal">
-                    <div class="glass relative overflow-hidden rounded-[2rem] p-8 shadow-premium sm:p-10">
-                        <div class="absolute right-0 top-0 h-36 w-36 rounded-full bg-sky-500/20 blur-3xl"></div>
+                    <div class="glass relative overflow-hidden rounded-3xl p-8 sm:p-10">
+                        <div class="absolute right-0 top-0 h-32 w-32 rounded-bl-full bg-sky-100"></div>
 
                         <div class="relative">
-                            <div class="mb-8 flex h-16 w-16 items-center justify-center rounded-2xl border border-sky-400/30 bg-sky-400/10 text-3xl text-sky-400">
+                            <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-900 text-2xl text-white shadow-md">
                                 <i class="fa-solid fa-server"></i>
                             </div>
 
-                            <p class="text-sm font-semibold uppercase tracking-[0.22em] text-sky-400">
-                                Profil SISR
+                            <p class="mt-8 text-sm font-bold uppercase tracking-[0.2em] text-sky-700">
+                                Objectif professionnel
                             </p>
 
-                            <h2 class="mt-4 text-3xl font-bold text-white">
-                                Concevoir, sécuriser et maintenir des infrastructures fiables.
+                            <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900">
+                                Administration systèmes, réseaux et cybersécurité
                             </h2>
 
-                            <div class="mt-8 grid gap-4 sm:grid-cols-2">
-                                <div class="rounded-2xl border border-slate-700 bg-slate-950/40 p-5">
-                                    <i class="fa-solid fa-network-wired text-xl text-sky-400"></i>
-                                    <p class="mt-3 font-semibold text-white">Réseaux</p>
-                                    <p class="mt-1 text-sm text-slate-400">VLAN, routage et segmentation</p>
+                            <p class="mt-5 leading-7 text-slate-600">
+                                Concevoir, déployer, sécuriser et maintenir des
+                                infrastructures informatiques fiables, documentées
+                                et adaptées aux besoins des organisations.
+                            </p>
+
+                            <div class="mt-8 grid gap-3 sm:grid-cols-2">
+                                <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                                    <i class="fa-solid fa-shield-halved text-sky-700"></i>
+                                    <p class="mt-2 font-semibold text-slate-900">
+                                        Sécurité
+                                    </p>
                                 </div>
 
-                                <div class="rounded-2xl border border-slate-700 bg-slate-950/40 p-5">
-                                    <i class="fa-solid fa-shield-halved text-xl text-emerald-400"></i>
-                                    <p class="mt-3 font-semibold text-white">Sécurité</p>
-                                    <p class="mt-1 text-sm text-slate-400">Pare-feu et durcissement</p>
+                                <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                                    <i class="fa-solid fa-gears text-sky-700"></i>
+                                    <p class="mt-2 font-semibold text-slate-900">
+                                        Automatisation
+                                    </p>
                                 </div>
 
-                                <div class="rounded-2xl border border-slate-700 bg-slate-950/40 p-5">
-                                    <i class="fa-brands fa-windows text-xl text-blue-400"></i>
-                                    <p class="mt-3 font-semibold text-white">Systèmes</p>
-                                    <p class="mt-1 text-sm text-slate-400">Windows Server et Debian</p>
+                                <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                                    <i class="fa-solid fa-network-wired text-sky-700"></i>
+                                    <p class="mt-2 font-semibold text-slate-900">
+                                        Réseaux
+                                    </p>
                                 </div>
 
-                                <div class="rounded-2xl border border-slate-700 bg-slate-950/40 p-5">
-                                    <i class="fa-solid fa-code text-xl text-violet-400"></i>
-                                    <p class="mt-3 font-semibold text-white">Automatisation</p>
-                                    <p class="mt-1 text-sm text-slate-400">PowerShell, Bash et Python</p>
+                                <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                                    <i class="fa-solid fa-server text-sky-700"></i>
+                                    <p class="mt-2 font-semibold text-slate-900">
+                                        Systèmes
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -426,346 +462,391 @@
         </section>
 
         <!-- À propos et certifications -->
-        <section id="apropos" class="px-5 py-28 sm:px-8 lg:py-36">
-            <div class="mx-auto max-w-7xl">
-                <div class="reveal mb-16 max-w-3xl">
-                    <p class="mb-4 text-sm font-bold uppercase tracking-[0.25em] text-sky-400">
+        <section id="apropos" class="border-y border-slate-200 bg-white py-28">
+            <div class="mx-auto max-w-7xl px-5 lg:px-8">
+                <div class="reveal max-w-3xl">
+                    <span class="section-label">
+                        <i class="fa-solid fa-user"></i>
                         À propos
-                    </p>
-                    <h2 class="text-4xl font-bold tracking-tight text-white sm:text-5xl">
-                        Un profil curieux, rigoureux et orienté infrastructure.
+                    </span>
+
+                    <h2 class="mt-6 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+                        Curiosité, méthode et sens du service
                     </h2>
+
+                    <p class="mt-6 text-lg leading-8 text-slate-600">
+                        Passionné par l'informatique depuis mon plus jeune âge,
+                        ma curiosité m'a d'abord poussé à comprendre l'envers du
+                        décor de mes jeux vidéo et à réparer moi-même mes consoles.
+                        Cette envie de comprendre « comment ça marche » s'est
+                        transformée en vocation, m'orientant vers la gestion des
+                        infrastructures SISR.
+                    </p>
+
+                    <p class="mt-5 text-lg leading-8 text-slate-600">
+                        Curieux et débrouillard, j'aime automatiser les tâches et
+                        résoudre des problèmes complexes. Après l'obtention de mon
+                        BTS, j'ai pour ambition de poursuivre mes études en Licence
+                        afin de consolider mon expertise.
+                    </p>
                 </div>
 
-                <div class="grid items-start gap-10 lg:grid-cols-[0.92fr_1.08fr]">
-                    <article class="glass card-hover reveal rounded-3xl p-7 sm:p-9">
-                        <div class="mb-7 flex h-14 w-14 items-center justify-center rounded-2xl border border-sky-400/30 bg-sky-400/10 text-2xl text-sky-400">
-                            <i class="fa-solid fa-user-gear"></i>
+                <!-- Certifications -->
+                <div class="mt-20">
+                    <div class="reveal flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+                        <div>
+                            <p class="text-sm font-bold uppercase tracking-[0.18em] text-sky-700">
+                                Certifications
+                            </p>
+
+                            <h3 class="mt-2 text-3xl font-bold text-slate-900">
+                                Formation et validation des acquis
+                            </h3>
                         </div>
 
-                        <h3 class="text-2xl font-bold text-white">Mon profil</h3>
+                        <div class="flex items-center gap-2">
+                            <button
+                                id="certification-prev"
+                                type="button"
+                                aria-label="Certification précédente"
+                                class="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-slate-300 bg-white text-slate-700 shadow-sm transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-700"
+                            >
+                                <i class="fa-solid fa-arrow-left"></i>
+                            </button>
 
-                        <p class="mt-6 leading-8 text-slate-300">
-                            Passionné par l'informatique depuis mon plus jeune âge, ma curiosité
-                            m'a d'abord poussé à comprendre l'envers du décor de mes jeux vidéo
-                            et à réparer moi-même mes consoles. Cette envie de comprendre
-                            « comment ça marche » s'est transformée en vocation, m'orientant
-                            vers la gestion des infrastructures (SISR). Curieux et débrouillard,
-                            j'aime automatiser les tâches et résoudre des problèmes complexes.
-                            Après l'obtention de mon BTS, j'ai pour ambition de poursuivre mes
-                            études en Licence pour consolider mon expertise.
-                        </p>
-                    </article>
-
-                    <div class="reveal">
-                        <div class="mb-6 flex items-end justify-between gap-5">
-                            <div>
-                                <p class="text-sm font-bold uppercase tracking-[0.22em] text-sky-400">
-                                    Certifications
-                                </p>
-                                <h3 class="mt-2 text-2xl font-bold text-white">
-                                    Certifications & attestations
-                                </h3>
-                            </div>
-
-                            <div class="flex gap-2">
-                                <button
-                                    id="cert-prev"
-                                    type="button"
-                                    aria-label="Certification précédente"
-                                    class="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-slate-700 bg-slate-800/80 text-white transition hover:border-sky-400 hover:text-sky-400"
-                                >
-                                    <i class="fa-solid fa-chevron-left"></i>
-                                </button>
-
-                                <button
-                                    id="cert-next"
-                                    type="button"
-                                    aria-label="Certification suivante"
-                                    class="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-slate-700 bg-slate-800/80 text-white transition hover:border-sky-400 hover:text-sky-400"
-                                >
-                                    <i class="fa-solid fa-chevron-right"></i>
-                                </button>
-                            </div>
+                            <button
+                                id="certification-next"
+                                type="button"
+                                aria-label="Certification suivante"
+                                class="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-slate-300 bg-white text-slate-700 shadow-sm transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-700"
+                            >
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
                         </div>
+                    </div>
 
-                        <div
-                            id="certification-carousel"
-                            class="glass touch-pan-y overflow-hidden rounded-3xl shadow-premium"
-                        >
-                            <div id="certification-track" class="certification-track">
-
-                                <!-- ANSSI -->
-                                <article class="certification-slide is-active p-6 sm:p-9">
-                                    <div class="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
-                                        <div class="flex items-center gap-4">
-                                            <div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-sky-400/30 bg-gradient-to-br from-sky-400/20 to-blue-600/10 text-3xl text-sky-400">
-                                                <i class="fa-solid fa-shield-halved"></i>
-                                            </div>
-
+                    <div class="certification-viewport reveal mt-8 rounded-3xl">
+                        <div id="certification-track" class="certification-track">
+                            <!-- Certification ANSSI -->
+                            <article class="certification-slide px-0.5">
+                                <div class="glass overflow-hidden rounded-3xl">
+                                    <div class="grid lg:grid-cols-[0.38fr_0.62fr]">
+                                        <div class="flex flex-col justify-between bg-slate-900 p-8 text-white sm:p-10">
                                             <div>
-                                                <span class="inline-flex rounded-full border border-emerald-400/25 bg-emerald-400/10 px-3 py-1 text-xs font-bold text-emerald-300">
-                                                    Certification obtenue
-                                                </span>
+                                                <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 text-2xl">
+                                                    <i class="fa-solid fa-shield-halved"></i>
+                                                </div>
 
-                                                <h4 class="mt-3 text-xl font-bold text-white sm:text-2xl">
-                                                    Attestation de suivi SecNumacadémie (ANSSI)
+                                                <p class="mt-8 text-sm font-bold uppercase tracking-[0.18em] text-sky-300">
+                                                    ANSSI
+                                                </p>
+
+                                                <h4 class="mt-3 text-2xl font-bold leading-tight">
+                                                    Attestation de suivi SecNumacadémie
                                                 </h4>
+
+                                                <p class="mt-5 leading-7 text-slate-300">
+                                                    Sensibilisation aux bonnes pratiques
+                                                    fondamentales de la sécurité numérique.
+                                                </p>
+                                            </div>
+
+                                            <div class="mt-10 rounded-2xl border border-white/10 bg-white/5 p-4">
+                                                <p class="text-xs uppercase tracking-[0.14em] text-slate-400">
+                                                    Date d'obtention
+                                                </p>
+
+                                                <p class="mt-2 font-semibold text-white">
+                                                    28 Décembre 2025
+                                                </p>
                                             </div>
                                         </div>
 
-                                        <div class="rounded-2xl border border-slate-700 bg-slate-950/40 px-4 py-3 text-sm">
-                                            <p class="text-slate-400">Date d'obtention</p>
-                                            <p class="mt-1 font-semibold text-white">28 Décembre 2025</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="mt-9 space-y-6">
-                                        <div>
-                                            <div class="mb-2 flex items-center justify-between gap-4">
-                                                <span class="font-medium text-slate-200">Panorama de la SSI</span>
-                                                <span class="rounded-full border border-sky-400/30 bg-sky-400/10 px-3 py-1 text-xs font-bold text-sky-300">86.0%</span>
-                                            </div>
-                                            <div class="h-2 overflow-hidden rounded-full bg-slate-700/80">
-                                                <div class="progress-fill h-full rounded-full bg-gradient-to-r from-sky-500 to-cyan-300" style="--progress: 86%;"></div>
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <div class="mb-2 flex items-center justify-between gap-4">
-                                                <span class="font-medium text-slate-200">Sécurité de l'authentification</span>
-                                                <span class="rounded-full border border-sky-400/30 bg-sky-400/10 px-3 py-1 text-xs font-bold text-sky-300">88.0%</span>
-                                            </div>
-                                            <div class="h-2 overflow-hidden rounded-full bg-slate-700/80">
-                                                <div class="progress-fill h-full rounded-full bg-gradient-to-r from-sky-500 to-cyan-300" style="--progress: 88%;"></div>
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <div class="mb-2 flex items-center justify-between gap-4">
-                                                <span class="font-medium text-slate-200">Sécurité sur Internet</span>
-                                                <span class="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1 text-xs font-bold text-emerald-300">90.0%</span>
-                                            </div>
-                                            <div class="h-2 overflow-hidden rounded-full bg-slate-700/80">
-                                                <div class="progress-fill h-full rounded-full bg-gradient-to-r from-sky-500 to-emerald-300" style="--progress: 90%;"></div>
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <div class="mb-2 flex items-center justify-between gap-4">
-                                                <span class="font-medium text-slate-200">
-                                                    Sécurité du poste de travail et nomadisme
-                                                </span>
-                                                <span class="rounded-full border border-sky-400/30 bg-sky-400/10 px-3 py-1 text-xs font-bold text-sky-300">88.0%</span>
-                                            </div>
-                                            <div class="h-2 overflow-hidden rounded-full bg-slate-700/80">
-                                                <div class="progress-fill h-full rounded-full bg-gradient-to-r from-sky-500 to-cyan-300" style="--progress: 88%;"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <a
-                                        href="./attestation Anssi.pdf"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        class="mt-9 inline-flex items-center gap-3 rounded-xl border border-sky-400/70 bg-sky-400/5 px-5 py-3 font-semibold text-sky-300 transition hover:-translate-y-0.5 hover:bg-sky-400 hover:text-slate-950"
-                                    >
-                                        <i class="fa-solid fa-file-pdf"></i>
-                                        Voir l'attestation officielle
-                                    </a>
-                                </article>
-
-                                <!-- CNIL -->
-                                <article class="certification-slide p-6 sm:p-9">
-                                    <div class="flex min-h-[540px] flex-col justify-between">
-                                        <div>
-                                            <div class="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
-                                                <div class="flex items-center gap-4">
-                                                    <div class="flex h-16 w-16 items-center justify-center rounded-2xl border border-violet-400/30 bg-violet-400/10 text-3xl text-violet-300">
-                                                        <i class="fa-solid fa-user-shield"></i>
-                                                    </div>
-
-                                                    <div>
-                                                        <span class="inline-flex rounded-full border border-amber-400/25 bg-amber-400/10 px-3 py-1 text-xs font-bold text-amber-300">
-                                                            En cours de préparation
+                                        <div class="bg-white p-8 sm:p-10">
+                                            <div class="space-y-7">
+                                                <div>
+                                                    <div class="mb-2 flex items-center justify-between gap-4">
+                                                        <span class="font-semibold text-slate-800">
+                                                            Panorama de la SSI
                                                         </span>
 
-                                                        <h4 class="mt-3 text-2xl font-bold text-white">
-                                                            CNIL (Atelier RGPD)
-                                                        </h4>
+                                                        <span class="rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-xs font-bold text-sky-700">
+                                                            86.0%
+                                                        </span>
+                                                    </div>
+
+                                                    <div class="progress-track">
+                                                        <div class="progress-bar" style="--progress: 86%;"></div>
                                                     </div>
                                                 </div>
 
-                                                <span class="rounded-2xl border border-slate-700 bg-slate-950/40 px-4 py-3 text-sm font-medium text-slate-300">
-                                                    En préparation
-                                                </span>
+                                                <div>
+                                                    <div class="mb-2 flex items-center justify-between gap-4">
+                                                        <span class="font-semibold text-slate-800">
+                                                            Sécurité de l'authentification
+                                                        </span>
+
+                                                        <span class="rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-xs font-bold text-sky-700">
+                                                            88.0%
+                                                        </span>
+                                                    </div>
+
+                                                    <div class="progress-track">
+                                                        <div class="progress-bar" style="--progress: 88%;"></div>
+                                                    </div>
+                                                </div>
+
+                                                <div>
+                                                    <div class="mb-2 flex items-center justify-between gap-4">
+                                                        <span class="font-semibold text-slate-800">
+                                                            Sécurité sur Internet
+                                                        </span>
+
+                                                        <span class="rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-xs font-bold text-sky-700">
+                                                            90.0%
+                                                        </span>
+                                                    </div>
+
+                                                    <div class="progress-track">
+                                                        <div class="progress-bar" style="--progress: 90%;"></div>
+                                                    </div>
+                                                </div>
+
+                                                <div>
+                                                    <div class="mb-2 flex items-center justify-between gap-4">
+                                                        <span class="font-semibold text-slate-800">
+                                                            Sécurité du poste de travail et nomadisme
+                                                        </span>
+
+                                                        <span class="rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-xs font-bold text-sky-700">
+                                                            88.0%
+                                                        </span>
+                                                    </div>
+
+                                                    <div class="progress-track">
+                                                        <div class="progress-bar" style="--progress: 88%;"></div>
+                                                    </div>
+                                                </div>
                                             </div>
 
-                                            <p class="mt-10 max-w-2xl leading-8 text-slate-300">
-                                                Approfondissement des principes de protection des données,
-                                                des responsabilités liées au traitement des informations et
-                                                des bonnes pratiques de conformité au RGPD.
-                                            </p>
-
-                                            <div class="mt-9 grid gap-4 sm:grid-cols-2">
-                                                <div class="rounded-2xl border border-slate-700 bg-slate-950/40 p-5">
-                                                    <i class="fa-solid fa-database text-sky-400"></i>
-                                                    <p class="mt-3 font-semibold text-white">Données personnelles</p>
-                                                </div>
-
-                                                <div class="rounded-2xl border border-slate-700 bg-slate-950/40 p-5">
-                                                    <i class="fa-solid fa-scale-balanced text-violet-300"></i>
-                                                    <p class="mt-3 font-semibold text-white">Conformité RGPD</p>
-                                                </div>
-
-                                                <div class="rounded-2xl border border-slate-700 bg-slate-950/40 p-5">
-                                                    <i class="fa-solid fa-user-lock text-emerald-300"></i>
-                                                    <p class="mt-3 font-semibold text-white">Droits des personnes</p>
-                                                </div>
-
-                                                <div class="rounded-2xl border border-slate-700 bg-slate-950/40 p-5">
-                                                    <i class="fa-solid fa-shield text-amber-300"></i>
-                                                    <p class="mt-3 font-semibold text-white">Sécurisation</p>
-                                                </div>
-                                            </div>
+                                            <a
+                                                href="./attestation Anssi.pdf"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                class="mt-9 inline-flex items-center gap-2 rounded-xl border border-sky-300 bg-white px-5 py-3 text-sm font-semibold text-sky-800 shadow-sm transition hover:bg-sky-50"
+                                            >
+                                                <i class="fa-solid fa-file-pdf"></i>
+                                                Voir l'attestation officielle
+                                            </a>
                                         </div>
                                     </div>
-                                </article>
-                            </div>
-                        </div>
+                                </div>
+                            </article>
 
-                        <div id="certification-dots" class="mt-6 flex items-center justify-center gap-2">
-                            <button type="button" class="carousel-dot active" data-slide="0" aria-label="Afficher la certification ANSSI"></button>
-                            <button type="button" class="carousel-dot" data-slide="1" aria-label="Afficher la certification CNIL"></button>
+                            <!-- Certification CNIL -->
+                            <article class="certification-slide px-0.5">
+                                <div class="glass flex min-h-[520px] items-center rounded-3xl p-8 sm:p-12">
+                                    <div class="mx-auto max-w-3xl text-center">
+                                        <div class="mx-auto flex h-20 w-20 items-center justify-center rounded-3xl bg-slate-900 text-3xl text-white shadow-md">
+                                            <i class="fa-solid fa-scale-balanced"></i>
+                                        </div>
+
+                                        <span class="mt-8 inline-flex rounded-full border border-sky-200 bg-sky-50 px-4 py-2 text-sm font-semibold text-sky-700">
+                                            En cours de préparation
+                                        </span>
+
+                                        <h4 class="mt-6 text-3xl font-bold text-slate-900">
+                                            CNIL — Atelier RGPD
+                                        </h4>
+
+                                        <p class="mt-5 text-lg leading-8 text-slate-600">
+                                            Formation consacrée aux principes essentiels
+                                            de la protection des données personnelles,
+                                            aux responsabilités des organisations et
+                                            aux bonnes pratiques de conformité.
+                                        </p>
+
+                                        <div class="mt-8 flex flex-wrap justify-center gap-3">
+                                            <span class="rounded-full border border-slate-200 bg-slate-100 px-4 py-2 text-sm font-medium text-slate-700">
+                                                RGPD
+                                            </span>
+
+                                            <span class="rounded-full border border-slate-200 bg-slate-100 px-4 py-2 text-sm font-medium text-slate-700">
+                                                Données personnelles
+                                            </span>
+
+                                            <span class="rounded-full border border-slate-200 bg-slate-100 px-4 py-2 text-sm font-medium text-slate-700">
+                                                Conformité
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
                         </div>
+                    </div>
+
+                    <div id="certification-dots" class="mt-6 flex justify-center gap-2">
+                        <button
+                            type="button"
+                            class="certification-dot h-2.5 w-8 rounded-full bg-sky-700 transition"
+                            aria-label="Afficher la certification ANSSI"
+                            data-slide="0"
+                        ></button>
+
+                        <button
+                            type="button"
+                            class="certification-dot h-2.5 w-2.5 rounded-full bg-slate-300 transition"
+                            aria-label="Afficher la certification CNIL"
+                            data-slide="1"
+                        ></button>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Compétences -->
-        <section id="competences" class="bg-slate-950/30 px-5 py-28 sm:px-8 lg:py-36">
-            <div class="mx-auto max-w-7xl">
-                <div class="reveal mb-16 max-w-3xl">
-                    <p class="mb-4 text-sm font-bold uppercase tracking-[0.25em] text-sky-400">
+        <section id="competences" class="py-28">
+            <div class="mx-auto max-w-7xl px-5 lg:px-8">
+                <div class="reveal max-w-3xl">
+                    <span class="section-label">
+                        <i class="fa-solid fa-layer-group"></i>
                         Compétences
-                    </p>
-                    <h2 class="text-4xl font-bold tracking-tight text-white sm:text-5xl">
-                        Technologies et environnements maîtrisés.
+                    </span>
+
+                    <h2 class="mt-6 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+                        Environnement technique
                     </h2>
+
+                    <p class="mt-6 text-lg leading-8 text-slate-600">
+                        Des compétences développées à travers la formation,
+                        les travaux pratiques et les réalisations professionnelles.
+                    </p>
                 </div>
 
-                <div class="grid gap-6 lg:grid-cols-2">
-                    <article class="glass card-hover reveal rounded-3xl p-7 sm:p-8">
-                        <div class="mb-7 flex items-center gap-4">
-                            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-500/10 text-xl text-blue-400">
-                                <i class="fa-solid fa-server"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-white">Systèmes</h3>
+                <div class="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+                    <!-- Systèmes -->
+                    <article class="skill-card rounded-3xl border border-slate-200 bg-white p-7 shadow-sm reveal">
+                        <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-sky-50 text-xl text-sky-700">
+                            <i class="fa-solid fa-server"></i>
                         </div>
 
-                        <div class="grid gap-4 sm:grid-cols-2">
-                            <div class="flex items-center gap-4 rounded-2xl border border-slate-700 bg-slate-800/70 p-4">
-                                <span class="skill-logo text-blue-400"><i class="fa-brands fa-windows"></i></span>
-                                <span class="font-semibold text-white">Windows Server</span>
+                        <h3 class="mt-5 text-xl font-bold text-slate-900">
+                            Systèmes
+                        </h3>
+
+                        <div class="mt-6 space-y-3">
+                            <div class="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 p-3">
+                                <i class="devicon-windows11-original colored text-2xl"></i>
+                                <span class="font-medium text-slate-700">Windows Server</span>
                             </div>
 
-                            <div class="flex items-center gap-4 rounded-2xl border border-slate-700 bg-slate-800/70 p-4">
-                                <span class="skill-logo"><i class="devicon-debian-plain colored"></i></span>
-                                <span class="font-semibold text-white">Debian</span>
+                            <div class="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 p-3">
+                                <i class="devicon-debian-plain colored text-2xl"></i>
+                                <span class="font-medium text-slate-700">Debian</span>
                             </div>
 
-                            <div class="flex items-center gap-4 rounded-2xl border border-slate-700 bg-slate-800/70 p-4">
-                                <span class="skill-logo text-sky-400"><i class="fa-solid fa-sitemap"></i></span>
-                                <span class="font-semibold text-white">Active Directory</span>
+                            <div class="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 p-3">
+                                <i class="fa-solid fa-sitemap text-2xl text-sky-700"></i>
+                                <span class="font-medium text-slate-700">Active Directory</span>
                             </div>
 
-                            <div class="flex items-center gap-4 rounded-2xl border border-slate-700 bg-slate-800/70 p-4">
-                                <span class="skill-logo text-blue-400"><i class="fa-solid fa-server"></i></span>
-                                <span class="font-semibold text-white">WSUS</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="glass card-hover reveal rounded-3xl p-7 sm:p-8">
-                        <div class="mb-7 flex items-center gap-4">
-                            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-500/10 text-xl text-cyan-400">
-                                <i class="fa-solid fa-network-wired"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-white">Réseaux & Sécurité</h3>
-                        </div>
-
-                        <div class="grid gap-4 sm:grid-cols-2">
-                            <div class="flex items-center gap-4 rounded-2xl border border-slate-700 bg-slate-800/70 p-4">
-                                <span class="skill-logo text-sky-400"><i class="fa-solid fa-route"></i></span>
-                                <span class="font-semibold text-white">Cisco — VLAN & Routage</span>
-                            </div>
-
-                            <div class="flex items-center gap-4 rounded-2xl border border-slate-700 bg-slate-800/70 p-4">
-                                <span class="skill-logo text-red-400"><i class="fa-solid fa-shield-halved"></i></span>
-                                <span class="font-semibold text-white">pfSense</span>
-                            </div>
-
-                            <div class="flex items-center gap-4 rounded-2xl border border-slate-700 bg-slate-800/70 p-4">
-                                <span class="skill-logo text-amber-400"><i class="fa-solid fa-fire-flame-curved"></i></span>
-                                <span class="font-semibold text-white">Pare-feu</span>
-                            </div>
-
-                            <div class="flex items-center gap-4 rounded-2xl border border-slate-700 bg-slate-800/70 p-4">
-                                <span class="skill-logo text-emerald-400"><i class="fa-solid fa-diagram-project"></i></span>
-                                <span class="font-semibold text-white">Packet Tracer</span>
+                            <div class="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 p-3">
+                                <i class="fa-brands fa-microsoft text-2xl text-sky-700"></i>
+                                <span class="font-medium text-slate-700">WSUS</span>
                             </div>
                         </div>
                     </article>
 
-                    <article class="glass card-hover reveal rounded-3xl p-7 sm:p-8">
-                        <div class="mb-7 flex items-center gap-4">
-                            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-violet-500/10 text-xl text-violet-400">
-                                <i class="fa-solid fa-cubes"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-white">Virtualisation</h3>
+                    <!-- Réseaux -->
+                    <article class="skill-card rounded-3xl border border-slate-200 bg-white p-7 shadow-sm reveal">
+                        <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-sky-50 text-xl text-sky-700">
+                            <i class="fa-solid fa-network-wired"></i>
                         </div>
 
-                        <div class="grid gap-4 sm:grid-cols-3">
-                            <div class="flex items-center gap-4 rounded-2xl border border-slate-700 bg-slate-800/70 p-4">
-                                <span class="skill-logo text-blue-400"><i class="fa-brands fa-windows"></i></span>
-                                <span class="font-semibold text-white">Hyper-V</span>
+                        <h3 class="mt-5 text-xl font-bold text-slate-900">
+                            Réseaux & Sécurité
+                        </h3>
+
+                        <div class="mt-6 space-y-3">
+                            <div class="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 p-3">
+                                <i class="fa-solid fa-network-wired text-2xl text-sky-700"></i>
+                                <span class="font-medium text-slate-700">Cisco, VLAN, Routage</span>
                             </div>
 
-                            <div class="flex items-center gap-4 rounded-2xl border border-slate-700 bg-slate-800/70 p-4">
-                                <span class="skill-logo text-orange-400"><i class="fa-solid fa-layer-group"></i></span>
-                                <span class="font-semibold text-white">Proxmox</span>
+                            <div class="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 p-3">
+                                <i class="fa-solid fa-shield-halved text-2xl text-sky-700"></i>
+                                <span class="font-medium text-slate-700">pfSense</span>
                             </div>
 
-                            <div class="flex items-center gap-4 rounded-2xl border border-slate-700 bg-slate-800/70 p-4">
-                                <span class="skill-logo text-blue-300"><i class="fa-solid fa-box"></i></span>
-                                <span class="font-semibold text-white">VirtualBox</span>
+                            <div class="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 p-3">
+                                <i class="fa-solid fa-fire-flame-curved text-2xl text-slate-700"></i>
+                                <span class="font-medium text-slate-700">Pare-feu</span>
+                            </div>
+
+                            <div class="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 p-3">
+                                <i class="fa-solid fa-diagram-project text-2xl text-sky-700"></i>
+                                <span class="font-medium text-slate-700">Packet Tracer</span>
                             </div>
                         </div>
                     </article>
 
-                    <article class="glass card-hover reveal rounded-3xl p-7 sm:p-8">
-                        <div class="mb-7 flex items-center gap-4">
-                            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-500/10 text-xl text-emerald-400">
-                                <i class="fa-solid fa-code"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-white">Scripting</h3>
+                    <!-- Virtualisation -->
+                    <article class="skill-card rounded-3xl border border-slate-200 bg-white p-7 shadow-sm reveal">
+                        <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-sky-50 text-xl text-sky-700">
+                            <i class="fa-solid fa-cubes"></i>
                         </div>
 
-                        <div class="grid gap-4 sm:grid-cols-3">
-                            <div class="flex items-center gap-4 rounded-2xl border border-slate-700 bg-slate-800/70 p-4">
-                                <span class="skill-logo text-blue-400"><i class="fa-solid fa-terminal"></i></span>
-                                <span class="font-semibold text-white">PowerShell</span>
+                        <h3 class="mt-5 text-xl font-bold text-slate-900">
+                            Virtualisation
+                        </h3>
+
+                        <div class="mt-6 space-y-3">
+                            <div class="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 p-3">
+                                <i class="fa-brands fa-microsoft text-2xl text-sky-700"></i>
+                                <span class="font-medium text-slate-700">Hyper-V</span>
                             </div>
 
-                            <div class="flex items-center gap-4 rounded-2xl border border-slate-700 bg-slate-800/70 p-4">
-                                <span class="skill-logo text-emerald-400"><i class="fa-solid fa-dollar-sign"></i></span>
-                                <span class="font-semibold text-white">Bash</span>
+                            <div class="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 p-3">
+                                <i class="fa-solid fa-server text-2xl text-slate-700"></i>
+                                <span class="font-medium text-slate-700">Proxmox</span>
                             </div>
 
-                            <div class="flex items-center gap-4 rounded-2xl border border-slate-700 bg-slate-800/70 p-4">
-                                <span class="skill-logo"><i class="devicon-python-plain colored"></i></span>
-                                <span class="font-semibold text-white">Python</span>
+                            <div class="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 p-3">
+                                <i class="devicon-virtualbox-plain colored text-2xl"></i>
+                                <span class="font-medium text-slate-700">VirtualBox</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Scripting -->
+                    <article class="skill-card rounded-3xl border border-slate-200 bg-white p-7 shadow-sm reveal">
+                        <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-sky-50 text-xl text-sky-700">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+
+                        <h3 class="mt-5 text-xl font-bold text-slate-900">
+                            Scripting
+                        </h3>
+
+                        <div class="mt-6 space-y-3">
+                            <div class="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 p-3">
+                                <i class="devicon-powershell-plain colored text-2xl"></i>
+                                <span class="font-medium text-slate-700">PowerShell</span>
+                            </div>
+
+                            <div class="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 p-3">
+                                <i class="devicon-bash-plain text-2xl text-slate-800"></i>
+                                <span class="font-medium text-slate-700">Bash</span>
+                            </div>
+
+                            <div class="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 p-3">
+                                <i class="devicon-python-plain colored text-2xl"></i>
+                                <span class="font-medium text-slate-700">Python</span>
+                            </div>
+
+                            <div class="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 p-3">
+                                <i class="fa-solid fa-terminal text-2xl text-sky-700"></i>
+                                <span class="font-medium text-slate-700">Batch</span>
                             </div>
                         </div>
                     </article>
@@ -774,659 +855,906 @@
         </section>
 
         <!-- Parcours -->
-        <section id="parcours" class="px-5 py-28 sm:px-8 lg:py-36">
-            <div class="mx-auto max-w-5xl">
-                <div class="reveal mb-16 max-w-3xl">
-                    <p class="mb-4 text-sm font-bold uppercase tracking-[0.25em] text-sky-400">
+        <section id="parcours" class="border-y border-slate-200 bg-white py-28">
+            <div class="mx-auto max-w-7xl px-5 lg:px-8">
+                <div class="reveal max-w-3xl">
+                    <span class="section-label">
+                        <i class="fa-solid fa-graduation-cap"></i>
                         Parcours
-                    </p>
-                    <h2 class="text-4xl font-bold tracking-tight text-white sm:text-5xl">
-                        Formation et expériences.
+                    </span>
+
+                    <h2 class="mt-6 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+                        Formation et expérience
                     </h2>
                 </div>
 
-                <!-- Annonce de recherche de stage -->
-                <article class="reveal mb-14 overflow-hidden rounded-3xl border border-amber-400/50 bg-gradient-to-r from-amber-400/10 via-orange-400/5 to-sky-400/10 p-1 shadow-[0_25px_70px_rgba(251,191,36,0.12)]">
-                    <div class="relative overflow-hidden rounded-[calc(1.5rem-4px)] bg-slate-900/85 p-6 backdrop-blur-xl sm:p-8">
-                        <div class="absolute right-[-50px] top-[-70px] h-48 w-48 rounded-full bg-amber-400/15 blur-3xl"></div>
+                <!-- Recherche de stage -->
+                <div class="reveal mt-12 overflow-hidden rounded-3xl border border-sky-200 bg-sky-50 shadow-sm">
+                    <div class="flex flex-col gap-6 p-7 sm:flex-row sm:items-center sm:p-9">
+                        <div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-slate-900 text-2xl text-white shadow-md">
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </div>
 
-                        <div class="relative flex flex-col gap-6 sm:flex-row sm:items-center">
-                            <div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-amber-400/40 bg-amber-400/10 text-2xl text-amber-300">
-                                <i class="fa-solid fa-calendar-days"></i>
-                            </div>
+                        <div>
+                            <span class="inline-flex rounded-full border border-sky-200 bg-white px-3 py-1 text-xs font-bold uppercase tracking-[0.15em] text-sky-700">
+                                Disponibilité
+                            </span>
 
-                            <div class="flex-1">
-                                <div class="mb-3 flex flex-wrap items-center gap-3">
-                                    <span class="inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-400/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-amber-300">
-                                        <span class="h-2 w-2 animate-pulse rounded-full bg-amber-300"></span>
-                                        Disponibilité
-                                    </span>
+                            <h3 class="mt-3 text-xl font-bold leading-relaxed text-slate-900 sm:text-2xl">
+                                🎯 À la recherche d'un stage (Administration Systèmes,
+                                Réseaux & Cybersécurité) — Du 18 Janvier au 19 Février
+                            </h3>
 
-                                    <span class="inline-flex rounded-full border border-sky-400/30 bg-sky-400/10 px-3 py-1 text-xs font-bold text-sky-300">
-                                        Stage BTS SIO SISR
-                                    </span>
-                                </div>
-
-                                <h3 class="text-xl font-bold leading-relaxed text-white sm:text-2xl">
-                                    🎯 À la recherche d'un stage (Administration Systèmes, Réseaux & Cybersécurité) — Du 18 Janvier au 19 Février
-                                </h3>
-                            </div>
-
-                            <a
-                                href="#contact"
-                                class="inline-flex shrink-0 items-center justify-center gap-3 self-start rounded-xl border border-amber-400 bg-amber-400 px-5 py-3 font-bold text-slate-950 transition hover:-translate-y-1 hover:bg-amber-300 sm:self-center"
-                            >
-                                <i class="fa-solid fa-envelope"></i>
-                                Me contacter
-                            </a>
+                            <p class="mt-3 text-slate-600">
+                                Disponible pour contribuer à des missions de déploiement,
+                                maintenance, support, administration réseau et sécurisation
+                                des systèmes d'information.
+                            </p>
                         </div>
                     </div>
-                </article>
+                </div>
 
-                <div class="relative ml-3 border-l border-slate-700 pl-8 sm:ml-5 sm:pl-12">
-                    <article class="reveal relative pb-16">
-                        <span class="absolute left-[-43px] top-1 flex h-5 w-5 items-center justify-center rounded-full border-4 border-slate-900 bg-sky-400 sm:left-[-59px]"></span>
+                <!-- Timeline -->
+                <div class="relative mt-16">
+                    <div class="timeline-line absolute bottom-0 left-[1.15rem] top-0 w-px sm:left-[1.4rem]"></div>
 
-                        <div class="glass card-hover rounded-3xl p-7 sm:p-8">
-                            <span class="inline-flex rounded-full border border-sky-400/30 bg-sky-400/10 px-4 py-1.5 text-sm font-bold text-sky-300">
-                                2025 — Présent
-                            </span>
+                    <div class="space-y-12">
+                        <article class="reveal relative pl-14 sm:pl-20">
+                            <div class="absolute left-0 top-1 flex h-10 w-10 items-center justify-center rounded-full border-4 border-white bg-sky-700 text-sm text-white shadow-md sm:h-12 sm:w-12">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                            </div>
 
-                            <h3 class="mt-5 text-2xl font-bold text-white">
-                                Préparation du BTS SIO option SISR
-                            </h3>
+                            <div class="rounded-3xl border border-slate-200 bg-slate-50 p-7 shadow-sm">
+                                <span class="text-sm font-bold uppercase tracking-[0.15em] text-sky-700">
+                                    2025 — Présent
+                                </span>
 
-                            <p class="mt-2 font-medium text-sky-400">
-                                Lycée Gustave Flaubert
-                            </p>
+                                <h3 class="mt-2 text-2xl font-bold text-slate-900">
+                                    BTS SIO option SISR
+                                </h3>
 
-                            <p class="mt-5 leading-7 text-slate-400">
-                                Formation en administration des systèmes, infrastructures réseau,
-                                virtualisation, cybersécurité et support informatique.
-                            </p>
-                        </div>
-                    </article>
+                                <p class="mt-2 font-medium text-slate-700">
+                                    Lycée Gustave Flaubert
+                                </p>
 
-                    <article class="reveal relative pb-16">
-                        <span class="absolute left-[-43px] top-1 flex h-5 w-5 items-center justify-center rounded-full border-4 border-slate-900 bg-emerald-400 sm:left-[-59px]"></span>
+                                <p class="mt-4 leading-7 text-slate-600">
+                                    Préparation aux métiers de l'administration systèmes
+                                    et réseaux, de la cybersécurité, du support et de la
+                                    gestion du patrimoine informatique.
+                                </p>
+                            </div>
+                        </article>
 
-                        <div class="glass card-hover rounded-3xl p-7 sm:p-8">
-                            <span class="inline-flex rounded-full border border-emerald-400/30 bg-emerald-400/10 px-4 py-1.5 text-sm font-bold text-emerald-300">
-                                Mai — Juin 2026
-                            </span>
+                        <article class="reveal relative pl-14 sm:pl-20">
+                            <div class="absolute left-0 top-1 flex h-10 w-10 items-center justify-center rounded-full border-4 border-white bg-slate-700 text-sm text-white shadow-md sm:h-12 sm:w-12">
+                                <i class="fa-solid fa-briefcase"></i>
+                            </div>
 
-                            <h3 class="mt-5 text-2xl font-bold text-white">
-                                Stage de 1ère année — 5 semaines
-                            </h3>
+                            <div class="rounded-3xl border border-slate-200 bg-slate-50 p-7 shadow-sm">
+                                <span class="text-sm font-bold uppercase tracking-[0.15em] text-sky-700">
+                                    Mai — Juin 2026
+                                </span>
 
-                            <ul class="mt-6 space-y-3 text-slate-400">
-                                <li class="flex gap-3">
-                                    <i class="fa-solid fa-check mt-1 text-sky-400"></i>
-                                    Création de scripts de post-installation.
-                                </li>
-                                <li class="flex gap-3">
-                                    <i class="fa-solid fa-check mt-1 text-sky-400"></i>
-                                    Création d'une clé bootable et d'une ISO Windows personnalisée.
-                                </li>
-                                <li class="flex gap-3">
-                                    <i class="fa-solid fa-check mt-1 text-sky-400"></i>
-                                    Déploiement et configuration d'un serveur WSUS.
-                                </li>
-                                <li class="flex gap-3">
-                                    <i class="fa-solid fa-check mt-1 text-sky-400"></i>
-                                    Configuration d'un routeur et de caméras IP.
-                                </li>
-                            </ul>
-                        </div>
-                    </article>
+                                <h3 class="mt-2 text-2xl font-bold text-slate-900">
+                                    Stage de première année — 5 semaines
+                                </h3>
 
-                    <article class="reveal relative">
-                        <span class="absolute left-[-43px] top-1 flex h-5 w-5 items-center justify-center rounded-full border-4 border-slate-900 bg-violet-400 sm:left-[-59px]"></span>
+                                <p class="mt-4 leading-7 text-slate-600">
+                                    Création de scripts de post-installation, conception
+                                    d'une clé bootable avec une image ISO Windows
+                                    personnalisée, déploiement d'un serveur WSUS,
+                                    configuration d'un routeur et de caméras IP.
+                                </p>
+                            </div>
+                        </article>
 
-                        <div class="glass card-hover rounded-3xl p-7 sm:p-8">
-                            <span class="inline-flex rounded-full border border-violet-400/30 bg-violet-400/10 px-4 py-1.5 text-sm font-bold text-violet-300">
-                                2025
-                            </span>
+                        <article class="reveal relative pl-14 sm:pl-20">
+                            <div class="absolute left-0 top-1 flex h-10 w-10 items-center justify-center rounded-full border-4 border-white bg-slate-500 text-sm text-white shadow-md sm:h-12 sm:w-12">
+                                <i class="fa-solid fa-school"></i>
+                            </div>
 
-                            <h3 class="mt-5 text-2xl font-bold text-white">
-                                Baccalauréat STI2D
-                            </h3>
+                            <div class="rounded-3xl border border-slate-200 bg-slate-50 p-7 shadow-sm">
+                                <span class="text-sm font-bold uppercase tracking-[0.15em] text-sky-700">
+                                    2025
+                                </span>
 
-                            <p class="mt-2 font-medium text-sky-400">
-                                Lycée Ferdinand Buisson
-                            </p>
+                                <h3 class="mt-2 text-2xl font-bold text-slate-900">
+                                    Baccalauréat STI2D
+                                </h3>
 
-                            <p class="mt-5 leading-7 text-slate-400">
-                                Obtention du Baccalauréat STI2D, consolidant une approche
-                                technologique, méthodique et orientée vers la résolution de problèmes.
-                            </p>
-                        </div>
-                    </article>
+                                <p class="mt-2 font-medium text-slate-700">
+                                    Lycée Ferdinand Buisson
+                                </p>
+                            </div>
+                        </article>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Projets -->
-        <section id="projets" class="bg-slate-950/30 px-5 py-28 sm:px-8 lg:py-36">
-            <div class="mx-auto max-w-7xl">
-                <div class="reveal mb-16 max-w-3xl">
-                    <p class="mb-4 text-sm font-bold uppercase tracking-[0.25em] text-sky-400">
-                        Projets
-                    </p>
+        <section id="projets" class="py-28">
+            <div class="mx-auto max-w-7xl px-5 lg:px-8">
+                <div class="reveal flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
+                    <div class="max-w-3xl">
+                        <span class="section-label">
+                            <i class="fa-solid fa-folder-open"></i>
+                            Projets
+                        </span>
 
-                    <h2 class="text-4xl font-bold tracking-tight text-white sm:text-5xl">
-                        Mes réalisations de stage.
-                    </h2>
+                        <h2 class="mt-6 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+                            Réalisations professionnelles
+                        </h2>
 
-                    <p class="mt-6 leading-8 text-slate-400">
-                        Deux projets concrets réalisés en entreprise, orientés
-                        masterisation, déploiement et automatisation.
-                    </p>
+                        <p class="mt-6 text-lg leading-8 text-slate-600">
+                            Ces réalisations de stage sont également présentées dans
+                            l'épreuve E5 au titre du Bloc 1 : support, mise à disposition
+                            des services et gestion du patrimoine informatique.
+                        </p>
+                    </div>
+
+                    <a
+                        href="#epreuves"
+                        class="inline-flex w-fit items-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 shadow-sm transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-800"
+                    >
+                        Voir leur intégration dans l'E5
+                        <i class="fa-solid fa-arrow-down"></i>
+                    </a>
                 </div>
 
-                <div class="grid gap-8 lg:grid-cols-2">
-
-                    <!-- Projet 1 : Master ISO Windows 11 -->
-                    <article class="reveal card-hover flex flex-col overflow-hidden rounded-3xl border border-slate-200 bg-slate-50 shadow-[0_25px_70px_rgba(2,6,23,0.45)]">
-                        <div class="flex flex-1 flex-col p-7 sm:p-9">
-                            <div class="flex items-start justify-between gap-5">
-                                <div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-blue-200 bg-blue-50 text-3xl text-blue-600">
-                                    <i class="fa-brands fa-windows"></i>
-                                </div>
-
-                                <span class="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-100 px-4 py-2 text-xs font-bold uppercase tracking-wider text-blue-700">
-                                    <i class="fa-solid fa-compact-disc"></i>
-                                    Masterisation &amp; Déploiement
-                                </span>
+                <div class="mt-14 grid gap-8 lg:grid-cols-2">
+                    <!-- Projet ISO Windows -->
+                    <article class="project-card reveal flex h-full flex-col rounded-3xl border border-slate-200 bg-white p-7 shadow-md sm:p-8">
+                        <div class="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
+                            <div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-sky-50 text-3xl text-sky-700">
+                                <i class="fa-brands fa-windows"></i>
                             </div>
 
-                            <h3 class="mt-8 text-2xl font-bold leading-snug text-slate-900 sm:text-3xl">
+                            <span class="w-fit rounded-full border border-sky-200 bg-sky-50 px-3 py-1.5 text-xs font-bold text-sky-700">
+                                Bloc 1 • E5
+                            </span>
+                        </div>
+
+                        <div class="mt-7">
+                            <span class="inline-flex rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-xs font-semibold text-sky-700">
+                                Masterisation & Déploiement
+                            </span>
+
+                            <h3 class="mt-4 text-2xl font-bold text-slate-900">
                                 Master ISO Windows 11 Personnalisée
                             </h3>
 
-                            <p class="mt-5 flex-1 leading-8 text-slate-600">
-                                Élaboration d'une image Windows 11 standardisée et optimisée
-                                pour entreprise avec NTLite (intégration des MAJ cumulatives,
-                                pilotes et documentation technique).
+                            <p class="mt-4 leading-7 text-slate-600">
+                                Élaboration d'une image Windows 11 standardisée et
+                                optimisée pour entreprise avec NTLite : intégration
+                                des mises à jour cumulatives, des pilotes et rédaction
+                                d'une documentation technique.
+                            </p>
+                        </div>
+
+                        <div class="mt-6 flex flex-wrap gap-2">
+                            <span class="rounded-full border border-slate-200 bg-slate-100 px-3 py-1.5 text-xs font-medium text-slate-700">
+                                NTLite
+                            </span>
+
+                            <span class="rounded-full border border-slate-200 bg-slate-100 px-3 py-1.5 text-xs font-medium text-slate-700">
+                                Windows 11
+                            </span>
+
+                            <span class="rounded-full border border-slate-200 bg-slate-100 px-3 py-1.5 text-xs font-medium text-slate-700">
+                                Documentation
+                            </span>
+                        </div>
+
+                        <div class="mt-auto flex flex-wrap gap-3 pt-8">
+                            <a
+                                href="https://github.com/jlaghribi1-hash/ISO-windows-11-personalis-e"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-slate-100 px-5 py-3 text-sm font-semibold text-slate-900 transition hover:border-sky-600 hover:bg-sky-600 hover:text-white"
+                            >
+                                <i class="fa-brands fa-github"></i>
+                                Consulter le projet sur GitHub
+                            </a>
+
+                            <a
+                                href="#e5-master-iso"
+                                class="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 transition hover:bg-slate-100"
+                            >
+                                Présentation E5
+                                <i class="fa-solid fa-arrow-down"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Projet Scripts -->
+                    <article class="project-card reveal flex h-full flex-col rounded-3xl border border-slate-200 bg-white p-7 shadow-md sm:p-8">
+                        <div class="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
+                            <div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-sky-50 text-3xl text-sky-700">
+                                <i class="fa-solid fa-terminal"></i>
+                            </div>
+
+                            <span class="w-fit rounded-full border border-sky-200 bg-sky-50 px-3 py-1.5 text-xs font-bold text-sky-700">
+                                Bloc 1 • E5
+                            </span>
+                        </div>
+
+                        <div class="mt-7">
+                            <span class="inline-flex rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-xs font-semibold text-sky-700">
+                                Automatisation & Scripting
+                            </span>
+
+                            <h3 class="mt-4 text-2xl font-bold text-slate-900">
+                                Scripts de Déploiement & Maintenance
+                            </h3>
+
+                            <p class="mt-4 leading-7 text-slate-600">
+                                Développement de scripts PowerShell et Batch :
+                                menu interactif, renommage, activation, configuration
+                                Wi-Fi, installation silencieuse du socle applicatif
+                                avec Ninite et automatisation des sauvegardes.
+                            </p>
+                        </div>
+
+                        <div class="mt-6 flex flex-wrap gap-2">
+                            <span class="rounded-full border border-slate-200 bg-slate-100 px-3 py-1.5 text-xs font-medium text-slate-700">
+                                PowerShell
+                            </span>
+
+                            <span class="rounded-full border border-slate-200 bg-slate-100 px-3 py-1.5 text-xs font-medium text-slate-700">
+                                Batch
+                            </span>
+
+                            <span class="rounded-full border border-slate-200 bg-slate-100 px-3 py-1.5 text-xs font-medium text-slate-700">
+                                Ninite
+                            </span>
+
+                            <span class="rounded-full border border-slate-200 bg-slate-100 px-3 py-1.5 text-xs font-medium text-slate-700">
+                                Sauvegarde
+                            </span>
+                        </div>
+
+                        <div class="mt-auto flex flex-wrap gap-3 pt-8">
+                            <a
+                                href="https://github.com/jlaghribi1-hash/logiciel-script-automatis-e"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-slate-100 px-5 py-3 text-sm font-semibold text-slate-900 transition hover:border-sky-600 hover:bg-sky-600 hover:text-white"
+                            >
+                                <i class="fa-brands fa-github"></i>
+                                Voir les scripts sur GitHub
+                            </a>
+
+                            <a
+                                href="#e5-scripts"
+                                class="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 transition hover:bg-slate-100"
+                            >
+                                Présentation E5
+                                <i class="fa-solid fa-arrow-down"></i>
+                            </a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Épreuves -->
+        <section id="epreuves" class="border-y border-slate-200 bg-white py-28">
+            <div class="mx-auto max-w-7xl px-5 lg:px-8">
+                <div class="reveal max-w-4xl">
+                    <span class="section-label">
+                        <i class="fa-solid fa-file-signature"></i>
+                        Épreuves professionnelles
+                    </span>
+
+                    <h2 class="mt-6 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+                        Épreuves E5 et E6
+                    </h2>
+
+                    <p class="mt-6 text-lg leading-8 text-slate-600">
+                        Présentation des compétences professionnelles développées
+                        pendant la formation et démontrées à travers des réalisations
+                        documentées.
+                    </p>
+                </div>
+
+                <!-- E5 -->
+                <article class="reveal mt-14 overflow-hidden rounded-3xl border border-slate-200 bg-slate-50 shadow-sm">
+                    <div class="border-b border-slate-200 bg-white p-7 sm:p-9">
+                        <div class="flex flex-col justify-between gap-6 lg:flex-row lg:items-start">
+                            <div class="flex gap-5">
+                                <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-slate-900 text-xl text-white">
+                                    <i class="fa-solid fa-display"></i>
+                                </div>
+
+                                <div>
+                                    <span class="text-sm font-bold uppercase tracking-[0.16em] text-sky-700">
+                                        Épreuve E5
+                                    </span>
+
+                                    <h3 class="mt-2 text-3xl font-bold text-slate-900">
+                                        Support et mise à disposition de services informatiques
+                                    </h3>
+
+                                    <p class="mt-4 max-w-4xl leading-7 text-slate-600">
+                                        Les deux réalisations de stage ci-dessous mobilisent
+                                        les compétences du Bloc 1 du BTS SIO. Elles illustrent
+                                        la gestion du patrimoine informatique, le traitement
+                                        des demandes, le déploiement de postes, la mise à
+                                        disposition de services et l'accompagnement des
+                                        utilisateurs.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <span class="inline-flex w-fit shrink-0 rounded-full border border-sky-200 bg-sky-50 px-4 py-2 text-sm font-bold text-sky-700">
+                                Bloc 1
+                            </span>
+                        </div>
+
+                        <div class="mt-8 flex flex-wrap gap-2">
+                            <span class="rounded-full border border-slate-200 bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-700">
+                                Recenser et identifier les ressources numériques
+                            </span>
+
+                            <span class="rounded-full border border-slate-200 bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-700">
+                                Exploiter des référentiels et standards
+                            </span>
+
+                            <span class="rounded-full border border-slate-200 bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-700">
+                                Mettre en place et vérifier les niveaux d'habilitation
+                            </span>
+
+                            <span class="rounded-full border border-slate-200 bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-700">
+                                Vérifier les conditions de continuité d'un service
+                            </span>
+
+                            <span class="rounded-full border border-slate-200 bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-700">
+                                Déployer un service
+                            </span>
+
+                            <span class="rounded-full border border-slate-200 bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-700">
+                                Traiter des demandes d'assistance
+                            </span>
+
+                            <span class="rounded-full border border-slate-200 bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-700">
+                                Documentation technique
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="grid gap-7 p-7 sm:p-9 xl:grid-cols-2">
+                        <!-- E5 Projet ISO -->
+                        <article id="e5-master-iso" class="flex scroll-mt-28 flex-col rounded-3xl border border-slate-200 bg-white p-7 shadow-sm">
+                            <div class="flex items-start justify-between gap-4">
+                                <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-sky-50 text-2xl text-sky-700">
+                                    <i class="fa-brands fa-windows"></i>
+                                </div>
+
+                                <span class="rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-xs font-bold text-sky-700">
+                                    Réalisation E5 n°1
+                                </span>
+                            </div>
+
+                            <h4 class="mt-6 text-2xl font-bold text-slate-900">
+                                Master ISO Windows 11 Personnalisée
+                            </h4>
+
+                            <p class="mt-4 leading-7 text-slate-600">
+                                Création d'une image Windows 11 standardisée destinée
+                                à accélérer et fiabiliser le déploiement de postes en
+                                environnement professionnel. L'image a été préparée avec
+                                NTLite afin d'intégrer les mises à jour cumulatives,
+                                les pilotes nécessaires et une configuration adaptée.
                             </p>
 
-                            <div class="mt-8 flex flex-wrap gap-2">
-                                <span class="rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700">
+                            <div class="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                                <h5 class="font-bold text-slate-900">
+                                    Compétences du Bloc 1 mobilisées
+                                </h5>
+
+                                <ul class="mt-4 space-y-3 text-sm leading-6 text-slate-600">
+                                    <li class="flex gap-3">
+                                        <i class="fa-solid fa-check mt-1 text-sky-700"></i>
+                                        <span>
+                                            Préparer, standardiser et déployer un poste
+                                            de travail conforme aux besoins de l'organisation.
+                                        </span>
+                                    </li>
+
+                                    <li class="flex gap-3">
+                                        <i class="fa-solid fa-check mt-1 text-sky-700"></i>
+                                        <span>
+                                            Maintenir le système à jour grâce à
+                                            l'intégration des correctifs et pilotes.
+                                        </span>
+                                    </li>
+
+                                    <li class="flex gap-3">
+                                        <i class="fa-solid fa-check mt-1 text-sky-700"></i>
+                                        <span>
+                                            Produire une documentation technique
+                                            reproductible pour faciliter les futurs déploiements.
+                                        </span>
+                                    </li>
+
+                                    <li class="flex gap-3">
+                                        <i class="fa-solid fa-check mt-1 text-sky-700"></i>
+                                        <span>
+                                            Contribuer à la gestion cohérente du parc
+                                            et du patrimoine informatique.
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="mt-6 flex flex-wrap gap-2">
+                                <span class="rounded-full border border-slate-200 bg-slate-100 px-3 py-1.5 text-xs font-medium text-slate-700">
                                     NTLite
                                 </span>
 
-                                <span class="rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700">
+                                <span class="rounded-full border border-slate-200 bg-slate-100 px-3 py-1.5 text-xs font-medium text-slate-700">
                                     Windows 11
                                 </span>
 
-                                <span class="rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700">
+                                <span class="rounded-full border border-slate-200 bg-slate-100 px-3 py-1.5 text-xs font-medium text-slate-700">
+                                    Masterisation
+                                </span>
+
+                                <span class="rounded-full border border-slate-200 bg-slate-100 px-3 py-1.5 text-xs font-medium text-slate-700">
                                     Documentation
                                 </span>
                             </div>
 
-                            <div class="mt-9 border-t border-slate-200 pt-7">
-                                <a
-                                    href="https://github.com/jlaghribi1-hash/ISO-windows-11-personalis-e"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    class="inline-flex items-center gap-3 rounded-xl border border-slate-300 bg-white px-5 py-3 font-semibold text-slate-800 transition hover:-translate-y-1 hover:border-slate-900 hover:bg-slate-900 hover:text-white"
-                                >
-                                    <i class="fa-brands fa-github text-lg"></i>
-                                    Consulter le projet sur GitHub
-                                    <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </article>
+                            <a
+                                href="https://github.com/jlaghribi1-hash/ISO-windows-11-personalis-e"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="mt-auto inline-flex w-fit items-center gap-2 pt-8 font-semibold text-sky-700 transition hover:text-sky-900"
+                            >
+                                <i class="fa-brands fa-github text-lg"></i>
+                                Consulter la réalisation sur GitHub
+                                <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            </a>
+                        </article>
 
-                    <!-- Projet 2 : Scripts de déploiement et maintenance -->
-                    <article class="reveal card-hover flex flex-col overflow-hidden rounded-3xl border border-slate-200 bg-slate-50 shadow-[0_25px_70px_rgba(2,6,23,0.45)]">
-                        <div class="flex flex-1 flex-col p-7 sm:p-9">
-                            <div class="flex items-start justify-between gap-5">
-                                <div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-cyan-200 bg-cyan-50 text-3xl text-cyan-600">
+                        <!-- E5 Projet scripts -->
+                        <article id="e5-scripts" class="flex scroll-mt-28 flex-col rounded-3xl border border-slate-200 bg-white p-7 shadow-sm">
+                            <div class="flex items-start justify-between gap-4">
+                                <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-sky-50 text-2xl text-sky-700">
                                     <i class="fa-solid fa-terminal"></i>
                                 </div>
 
-                                <span class="inline-flex items-center gap-2 rounded-full border border-cyan-200 bg-cyan-100 px-4 py-2 text-xs font-bold uppercase tracking-wider text-cyan-700">
-                                    <i class="fa-solid fa-gears"></i>
-                                    Automatisation &amp; Scripting
+                                <span class="rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-xs font-bold text-sky-700">
+                                    Réalisation E5 n°2
                                 </span>
                             </div>
 
-                            <h3 class="mt-8 text-2xl font-bold leading-snug text-slate-900 sm:text-3xl">
-                                Scripts de Déploiement &amp; Maintenance
-                            </h3>
+                            <h4 class="mt-6 text-2xl font-bold text-slate-900">
+                                Scripts de Déploiement & Maintenance
+                            </h4>
 
-                            <p class="mt-5 flex-1 leading-8 text-slate-600">
-                                Développement de scripts PowerShell et Batch (menu interactif,
-                                renommage, activation, Wi-Fi), installation silencieuse du socle
-                                applicatif avec Ninite et automatisation des sauvegardes.
+                            <p class="mt-4 leading-7 text-slate-600">
+                                Développement de scripts PowerShell et Batch pour
+                                automatiser la configuration post-installation des postes :
+                                renommage, activation, Wi-Fi, installation silencieuse du
+                                socle applicatif via Ninite et automatisation des sauvegardes.
                             </p>
 
-                            <div class="mt-8 flex flex-wrap gap-2">
-                                <span class="rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700">
+                            <div class="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                                <h5 class="font-bold text-slate-900">
+                                    Compétences du Bloc 1 mobilisées
+                                </h5>
+
+                                <ul class="mt-4 space-y-3 text-sm leading-6 text-slate-600">
+                                    <li class="flex gap-3">
+                                        <i class="fa-solid fa-check mt-1 text-sky-700"></i>
+                                        <span>
+                                            Automatiser les opérations récurrentes
+                                            de préparation et de maintenance des postes.
+                                        </span>
+                                    </li>
+
+                                    <li class="flex gap-3">
+                                        <i class="fa-solid fa-check mt-1 text-sky-700"></i>
+                                        <span>
+                                            Mettre à disposition un environnement
+                                            logiciel cohérent et immédiatement exploitable.
+                                        </span>
+                                    </li>
+
+                                    <li class="flex gap-3">
+                                        <i class="fa-solid fa-check mt-1 text-sky-700"></i>
+                                        <span>
+                                            Sécuriser les données par la mise en place
+                                            de procédures automatisées de sauvegarde.
+                                        </span>
+                                    </li>
+
+                                    <li class="flex gap-3">
+                                        <i class="fa-solid fa-check mt-1 text-sky-700"></i>
+                                        <span>
+                                            Réduire les erreurs manuelles et améliorer
+                                            la qualité du support aux utilisateurs.
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="mt-6 flex flex-wrap gap-2">
+                                <span class="rounded-full border border-slate-200 bg-slate-100 px-3 py-1.5 text-xs font-medium text-slate-700">
                                     PowerShell
                                 </span>
 
-                                <span class="rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700">
+                                <span class="rounded-full border border-slate-200 bg-slate-100 px-3 py-1.5 text-xs font-medium text-slate-700">
                                     Batch
                                 </span>
 
-                                <span class="rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700">
+                                <span class="rounded-full border border-slate-200 bg-slate-100 px-3 py-1.5 text-xs font-medium text-slate-700">
                                     Ninite
                                 </span>
 
-                                <span class="rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700">
+                                <span class="rounded-full border border-slate-200 bg-slate-100 px-3 py-1.5 text-xs font-medium text-slate-700">
                                     Sauvegarde
                                 </span>
                             </div>
 
-                            <div class="mt-9 border-t border-slate-200 pt-7">
-                                <a
-                                    href="https://github.com/jlaghribi1-hash/logiciel-script-automatis-e"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    class="inline-flex items-center gap-3 rounded-xl border border-slate-300 bg-white px-5 py-3 font-semibold text-slate-800 transition hover:-translate-y-1 hover:border-slate-900 hover:bg-slate-900 hover:text-white"
-                                >
-                                    <i class="fa-brands fa-github text-lg"></i>
-                                    Voir les scripts sur GitHub
-                                    <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
+                            <a
+                                href="https://github.com/jlaghribi1-hash/logiciel-script-automatis-e"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="mt-auto inline-flex w-fit items-center gap-2 pt-8 font-semibold text-sky-700 transition hover:text-sky-900"
+                            >
+                                <i class="fa-brands fa-github text-lg"></i>
+                                Consulter les scripts sur GitHub
+                                <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            </a>
+                        </article>
+                    </div>
+                </article>
 
-        <!-- E5 / E6 -->
-        <section id="epreuves" class="px-5 py-28 sm:px-8 lg:py-36">
-            <div class="mx-auto max-w-7xl">
-                <div class="reveal mb-16 max-w-3xl">
-                    <p class="mb-4 text-sm font-bold uppercase tracking-[0.25em] text-sky-400">
-                        Épreuves professionnelles
-                    </p>
-                    <h2 class="text-4xl font-bold tracking-tight text-white sm:text-5xl">
-                        Préparation des épreuves E5 et E6.
-                    </h2>
-                </div>
-
-                <div class="grid gap-8 lg:grid-cols-2">
-                    <article class="glass card-hover reveal rounded-3xl p-7 sm:p-9">
-                        <div class="flex items-start justify-between gap-5">
-                            <div class="flex h-16 w-16 items-center justify-center rounded-2xl border border-sky-400/30 bg-sky-400/10 text-2xl font-bold text-sky-400">
-                                E5
+                <!-- E6 -->
+                <article class="reveal mt-8 rounded-3xl border border-slate-200 bg-white p-7 shadow-sm sm:p-9">
+                    <div class="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+                        <div class="flex gap-5">
+                            <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-slate-100 text-xl text-slate-700">
+                                <i class="fa-solid fa-network-wired"></i>
                             </div>
 
-                            <span class="rounded-full border border-sky-400/25 bg-sky-400/10 px-4 py-2 text-xs font-bold uppercase tracking-wider text-sky-300">
-                                Support & services
-                            </span>
-                        </div>
+                            <div>
+                                <span class="text-sm font-bold uppercase tracking-[0.16em] text-sky-700">
+                                    Épreuve E6
+                                </span>
 
-                        <h3 class="mt-7 text-2xl font-bold text-white">
-                            Support et mise à disposition de services informatiques
-                        </h3>
+                                <h3 class="mt-2 text-3xl font-bold text-slate-900">
+                                    Administration des systèmes et des réseaux
+                                </h3>
 
-                        <p class="mt-5 leading-8 text-slate-300">
-                            Mes projets démontrent ma capacité à analyser un besoin, préparer
-                            une solution technique, déployer un service, sécuriser une
-                            infrastructure, documenter les opérations et assurer le suivi
-                            des ressources informatiques.
-                        </p>
-
-                        <div class="mt-8 space-y-5">
-                            <div class="rounded-2xl border border-slate-700 bg-slate-950/35 p-5">
-                                <div class="flex gap-4">
-                                    <i class="fa-brands fa-windows mt-1 text-blue-400"></i>
-                                    <div>
-                                        <h4 class="font-bold text-white">Master ISO Windows 11</h4>
-                                        <p class="mt-2 text-sm leading-6 text-slate-400">
-                                            Standardisation des postes, intégration des mises à jour et
-                                            gestion cohérente du patrimoine informatique.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="rounded-2xl border border-slate-700 bg-slate-950/35 p-5">
-                                <div class="flex gap-4">
-                                    <i class="fa-solid fa-terminal mt-1 text-cyan-400"></i>
-                                    <div>
-                                        <h4 class="font-bold text-white">Scripts de déploiement</h4>
-                                        <p class="mt-2 text-sm leading-6 text-slate-400">
-                                            Automatisation des opérations d'administration, réduction
-                                            des tâches répétitives et fiabilisation des interventions.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="rounded-2xl border border-slate-700 bg-slate-950/35 p-5">
-                                <div class="flex gap-4">
-                                    <i class="fa-solid fa-server mt-1 text-sky-400"></i>
-                                    <div>
-                                        <h4 class="font-bold text-white">Déploiement WSUS</h4>
-                                        <p class="mt-2 text-sm leading-6 text-slate-400">
-                                            Mise à disposition d'un service de gestion centralisée des
-                                            mises à jour et maintien en condition opérationnelle.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="rounded-2xl border border-slate-700 bg-slate-950/35 p-5">
-                                <div class="flex gap-4">
-                                    <i class="fa-solid fa-network-wired mt-1 text-emerald-400"></i>
-                                    <div>
-                                        <h4 class="font-bold text-white">Routage et sécurité réseau</h4>
-                                        <p class="mt-2 text-sm leading-6 text-slate-400">
-                                            Segmentation en VLAN, validation de la connectivité et
-                                            sécurisation logique de l'infrastructure.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="mt-8 flex flex-wrap gap-2">
-                            <span class="rounded-full border border-sky-400/25 bg-sky-400/10 px-3 py-2 text-xs font-semibold text-sky-300">Gérer le patrimoine informatique</span>
-                            <span class="rounded-full border border-emerald-400/25 bg-emerald-400/10 px-3 py-2 text-xs font-semibold text-emerald-300">Répondre aux incidents</span>
-                            <span class="rounded-full border border-violet-400/25 bg-violet-400/10 px-3 py-2 text-xs font-semibold text-violet-300">Travailler en mode projet</span>
-                            <span class="rounded-full border border-cyan-400/25 bg-cyan-400/10 px-3 py-2 text-xs font-semibold text-cyan-300">Mettre à disposition un service</span>
-                            <span class="rounded-full border border-amber-400/25 bg-amber-400/10 px-3 py-2 text-xs font-semibold text-amber-300">Documenter les interventions</span>
-                            <span class="rounded-full border border-blue-400/25 bg-blue-400/10 px-3 py-2 text-xs font-semibold text-blue-300">Développer son projet professionnel</span>
-                        </div>
-                    </article>
-
-                    <article class="glass card-hover reveal rounded-3xl p-7 sm:p-9">
-                        <div class="flex items-start justify-between gap-5">
-                            <div class="flex h-16 w-16 items-center justify-center rounded-2xl border border-violet-400/30 bg-violet-400/10 text-2xl font-bold text-violet-300">
-                                E6
-                            </div>
-
-                            <span class="rounded-full border border-violet-400/25 bg-violet-400/10 px-4 py-2 text-xs font-bold uppercase tracking-wider text-violet-300">
-                                Administration SISR
-                            </span>
-                        </div>
-
-                        <h3 class="mt-7 text-2xl font-bold text-white">
-                            Administration des systèmes et des réseaux
-                        </h3>
-
-                        <p class="mt-5 leading-8 text-slate-300">
-                            Cette épreuve valorise la conception, l'évolution, la sécurisation
-                            et l'administration d'une infrastructure. Les solutions présentées
-                            s'appuient notamment sur Windows Server, Debian, Cisco, pfSense,
-                            la virtualisation et l'automatisation PowerShell.
-                        </p>
-
-                        <div class="mt-8 grid gap-4 sm:grid-cols-2">
-                            <div class="rounded-2xl border border-slate-700 bg-slate-950/35 p-5">
-                                <i class="fa-solid fa-sitemap text-xl text-sky-400"></i>
-                                <h4 class="mt-4 font-bold text-white">Infrastructure</h4>
-                                <p class="mt-2 text-sm leading-6 text-slate-400">
-                                    Architecture, services, adressage et segmentation.
-                                </p>
-                            </div>
-
-                            <div class="rounded-2xl border border-slate-700 bg-slate-950/35 p-5">
-                                <i class="fa-solid fa-shield-halved text-xl text-emerald-400"></i>
-                                <h4 class="mt-4 font-bold text-white">Sécurisation</h4>
-                                <p class="mt-2 text-sm leading-6 text-slate-400">
-                                    Filtrage, contrôle des flux et protection des services.
-                                </p>
-                            </div>
-
-                            <div class="rounded-2xl border border-slate-700 bg-slate-950/35 p-5">
-                                <i class="fa-solid fa-chart-line text-xl text-violet-400"></i>
-                                <h4 class="mt-4 font-bold text-white">Supervision</h4>
-                                <p class="mt-2 text-sm leading-6 text-slate-400">
-                                    Vérification du fonctionnement et suivi des ressources.
-                                </p>
-                            </div>
-
-                            <div class="rounded-2xl border border-slate-700 bg-slate-950/35 p-5">
-                                <i class="fa-solid fa-file-lines text-xl text-amber-400"></i>
-                                <h4 class="mt-4 font-bold text-white">Documentation</h4>
-                                <p class="mt-2 text-sm leading-6 text-slate-400">
-                                    Procédures techniques et restitution professionnelle.
+                                <p class="mt-4 max-w-4xl leading-7 text-slate-600">
+                                    Cette épreuve permet de présenter des solutions
+                                    d'infrastructure répondant à un besoin identifié :
+                                    déploiement de services réseau, gestion des accès,
+                                    sécurisation, supervision, continuité et administration
+                                    des ressources.
                                 </p>
                             </div>
                         </div>
-                    </article>
-                </div>
-            </div>
-        </section>
 
-        <!-- Veille -->
-        <section id="veille" class="bg-slate-950/30 px-5 py-28 sm:px-8 lg:py-36">
-            <div class="mx-auto max-w-7xl">
-                <div class="reveal mb-16 max-w-3xl">
-                    <p class="mb-4 text-sm font-bold uppercase tracking-[0.25em] text-sky-400">
-                        Veille
-                    </p>
-                    <h2 class="text-4xl font-bold tracking-tight text-white sm:text-5xl">
-                        Veille technologique.
-                    </h2>
-                </div>
+                        <span class="inline-flex w-fit shrink-0 rounded-full border border-slate-200 bg-slate-100 px-4 py-2 text-sm font-bold text-slate-700">
+                            SISR
+                        </span>
+                    </div>
 
-                <article class="glass card-hover reveal relative overflow-hidden rounded-3xl p-8 sm:p-12">
-                    <div class="absolute right-[-70px] top-[-70px] h-64 w-64 rounded-full bg-sky-500/15 blur-3xl"></div>
+                    <div class="mt-8 grid gap-4 md:grid-cols-3">
+                        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                            <i class="fa-solid fa-route text-xl text-sky-700"></i>
 
-                    <div class="relative flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
-                        <div>
-                            <div class="flex h-16 w-16 items-center justify-center rounded-2xl border border-sky-400/30 bg-sky-400/10 text-2xl text-sky-400">
-                                <i class="fa-solid fa-rss"></i>
-                            </div>
+                            <h4 class="mt-3 font-bold text-slate-900">
+                                Infrastructure réseau
+                            </h4>
 
-                            <h3 class="mt-7 text-3xl font-bold text-white">
-                                Veille Technologique
-                            </h3>
-
-                            <p class="mt-4 text-lg text-slate-400">
-                                Sujet en cours de sélection
+                            <p class="mt-2 text-sm leading-6 text-slate-600">
+                                Routage inter-VLAN, segmentation, plan d'adressage
+                                et validation de la connectivité.
                             </p>
                         </div>
 
-                        <span class="inline-flex self-start rounded-full border border-amber-400/30 bg-amber-400/10 px-5 py-2 text-sm font-semibold text-amber-300 md:self-center">
-                            En préparation
-                        </span>
+                        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                            <i class="fa-solid fa-shield-halved text-xl text-sky-700"></i>
+
+                            <h4 class="mt-3 font-bold text-slate-900">
+                                Sécurisation
+                            </h4>
+
+                            <p class="mt-2 text-sm leading-6 text-slate-600">
+                                Pare-feu pfSense, filtrage des flux et application
+                                des principes de moindre privilège.
+                            </p>
+                        </div>
+
+                        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                            <i class="fa-solid fa-server text-xl text-sky-700"></i>
+
+                            <h4 class="mt-3 font-bold text-slate-900">
+                                Services systèmes
+                            </h4>
+
+                            <p class="mt-2 text-sm leading-6 text-slate-600">
+                                Windows Server, Active Directory, WSUS,
+                                virtualisation et administration centralisée.
+                            </p>
+                        </div>
                     </div>
                 </article>
             </div>
         </section>
 
-        <!-- Contact -->
-        <section id="contact" class="px-5 py-28 sm:px-8 lg:py-36">
-            <div class="mx-auto max-w-7xl">
-                <div class="reveal mb-16 max-w-3xl">
-                    <p class="mb-4 text-sm font-bold uppercase tracking-[0.25em] text-sky-400">
-                        Contact
-                    </p>
-                    <h2 class="text-4xl font-bold tracking-tight text-white sm:text-5xl">
-                        Échangeons sur une opportunité.
+        <!-- Veille -->
+        <section id="veille" class="py-28">
+            <div class="mx-auto max-w-7xl px-5 lg:px-8">
+                <div class="reveal max-w-3xl">
+                    <span class="section-label">
+                        <i class="fa-solid fa-rss"></i>
+                        Veille
+                    </span>
+
+                    <h2 class="mt-6 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+                        Veille technologique
                     </h2>
-                    <p class="mt-6 max-w-2xl leading-8 text-slate-400">
-                        Une question, une opportunité de stage ou un projet à me proposer ?
-                        Vous pouvez utiliser le formulaire ou me contacter directement.
+                </div>
+
+                <div class="reveal mt-12 rounded-3xl border border-slate-200 bg-white p-8 shadow-sm sm:p-10">
+                    <div class="flex flex-col gap-7 sm:flex-row sm:items-center">
+                        <div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-slate-900 text-2xl text-white">
+                            <i class="fa-solid fa-magnifying-glass-chart"></i>
+                        </div>
+
+                        <div>
+                            <span class="inline-flex rounded-full border border-slate-200 bg-slate-100 px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] text-slate-700">
+                                Préparation
+                            </span>
+
+                            <h3 class="mt-3 text-2xl font-bold text-slate-900">
+                                Sujet en cours de sélection
+                            </h3>
+
+                            <p class="mt-3 max-w-3xl leading-7 text-slate-600">
+                                La veille s'appuiera sur des sources spécialisées,
+                                institutionnelles et professionnelles afin de suivre
+                                les évolutions techniques, les vulnérabilités et les
+                                bonnes pratiques du secteur informatique.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="border-t border-slate-200 bg-white py-28">
+            <div class="mx-auto max-w-7xl px-5 lg:px-8">
+                <div class="reveal max-w-3xl">
+                    <span class="section-label">
+                        <i class="fa-solid fa-envelope"></i>
+                        Contact
+                    </span>
+
+                    <h2 class="mt-6 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+                        Échangeons sur votre besoin
+                    </h2>
+
+                    <p class="mt-6 text-lg leading-8 text-slate-600">
+                        Une opportunité de stage, une mission ou une question ?
+                        Vous pouvez me contacter directement ou utiliser le formulaire.
                     </p>
                 </div>
 
-                <div class="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-                    <form id="contact-form" class="glass reveal rounded-3xl p-7 sm:p-9" novalidate>
-                        <div class="grid gap-6 sm:grid-cols-2">
-                            <div>
-                                <label for="name" class="mb-2 block text-sm font-semibold text-white">
-                                    Nom
-                                </label>
-                                <input
-                                    id="name"
-                                    name="name"
-                                    type="text"
-                                    autocomplete="name"
-                                    required
-                                    placeholder="Votre nom"
-                                    class="form-field w-full rounded-xl border border-slate-700 bg-slate-950/50 px-4 py-3.5 text-white placeholder:text-slate-500"
-                                >
-                            </div>
+                <div class="mt-14 grid gap-8 lg:grid-cols-[0.72fr_1.28fr]">
+                    <!-- Coordonnées -->
+                    <aside class="reveal rounded-3xl border border-slate-200 bg-slate-50 p-7 shadow-sm sm:p-8">
+                        <h3 class="text-2xl font-bold text-slate-900">
+                            Coordonnées
+                        </h3>
 
-                            <div>
-                                <label for="email" class="mb-2 block text-sm font-semibold text-white">
-                                    Email
-                                </label>
-                                <input
-                                    id="email"
-                                    name="email"
-                                    type="email"
-                                    autocomplete="email"
-                                    required
-                                    placeholder="votre@email.fr"
-                                    class="form-field w-full rounded-xl border border-slate-700 bg-slate-950/50 px-4 py-3.5 text-white placeholder:text-slate-500"
-                                >
-                            </div>
-                        </div>
+                        <p class="mt-3 leading-7 text-slate-600">
+                            Je reste disponible pour toute proposition professionnelle
+                            liée aux systèmes, aux réseaux et à la cybersécurité.
+                        </p>
 
-                        <div class="mt-6">
-                            <label for="subject" class="mb-2 block text-sm font-semibold text-white">
-                                Sujet
-                            </label>
-                            <input
-                                id="subject"
-                                name="subject"
-                                type="text"
-                                required
-                                placeholder="Objet de votre message"
-                                class="form-field w-full rounded-xl border border-slate-700 bg-slate-950/50 px-4 py-3.5 text-white placeholder:text-slate-500"
+                        <div class="mt-8 space-y-4">
+                            <a
+                                href="mailto:jabirlaghribi@gmail.com"
+                                class="flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-4 transition hover:border-sky-300 hover:bg-sky-50"
                             >
-                        </div>
-
-                        <div class="mt-6">
-                            <label for="message" class="mb-2 block text-sm font-semibold text-white">
-                                Message
-                            </label>
-                            <textarea
-                                id="message"
-                                name="message"
-                                rows="7"
-                                required
-                                placeholder="Votre message..."
-                                class="form-field w-full resize-none rounded-xl border border-slate-700 bg-slate-950/50 px-4 py-3.5 text-white placeholder:text-slate-500"
-                            ></textarea>
-                        </div>
-
-                        <button
-                            type="submit"
-                            class="mt-7 inline-flex items-center gap-3 rounded-xl border border-sky-400 bg-sky-400 px-6 py-3.5 font-bold text-slate-950 transition hover:-translate-y-1 hover:bg-sky-300"
-                        >
-                            <i class="fa-solid fa-paper-plane"></i>
-                            Envoyer le message
-                        </button>
-
-                        <p
-                            id="form-status"
-                            class="mt-5 hidden rounded-xl border px-4 py-3 text-sm"
-                            role="status"
-                            aria-live="polite"
-                        ></p>
-                    </form>
-
-                    <aside class="reveal space-y-5">
-                        <a
-                            href="mailto:jabirlaghribi@gmail.com"
-                            class="glass card-hover flex items-center gap-5 rounded-3xl p-6 sm:p-7"
-                        >
-                            <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-sky-400/30 bg-sky-400/10 text-xl text-sky-400">
-                                <i class="fa-solid fa-envelope"></i>
-                            </span>
-
-                            <span class="min-w-0">
-                                <span class="block text-sm text-slate-400">Email</span>
-                                <span class="mt-1 block break-all font-semibold text-white">
-                                    jabirlaghribi@gmail.com
+                                <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-sky-700">
+                                    <i class="fa-solid fa-envelope"></i>
                                 </span>
-                            </span>
-                        </a>
 
-                        <a
-                            href="https://www.linkedin.com/in/jabir-laghribi-494b08387"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="glass card-hover flex items-center gap-5 rounded-3xl p-6 sm:p-7"
-                        >
-                            <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-sky-400/30 bg-sky-400/10 text-xl text-sky-400">
-                                <i class="fa-brands fa-linkedin-in"></i>
-                            </span>
+                                <span class="min-w-0">
+                                    <span class="block text-xs font-bold uppercase tracking-[0.12em] text-slate-500">
+                                        Email
+                                    </span>
 
-                            <span>
-                                <span class="block text-sm text-slate-400">LinkedIn</span>
-                                <span class="mt-1 block font-semibold text-white">Jabir LAGHRIBI</span>
-                            </span>
-                        </a>
+                                    <span class="block truncate font-semibold text-slate-900">
+                                        jabirlaghribi@gmail.com
+                                    </span>
+                                </span>
+                            </a>
 
-                        <a
-                            href="https://github.com/jlaghribi1-hash"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="glass card-hover flex items-center gap-5 rounded-3xl p-6 sm:p-7"
-                        >
-                            <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-slate-600 bg-slate-800/80 text-xl text-white">
-                                <i class="fa-brands fa-github"></i>
-                            </span>
+                            <a
+                                href="https://www.linkedin.com/in/jabir-laghribi-494b08387"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-4 transition hover:border-sky-300 hover:bg-sky-50"
+                            >
+                                <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-sky-700">
+                                    <i class="fa-brands fa-linkedin-in"></i>
+                                </span>
 
-                            <span>
-                                <span class="block text-sm text-slate-400">GitHub</span>
-                                <span class="mt-1 block font-semibold text-white">jlaghribi1-hash</span>
-                            </span>
-                        </a>
+                                <span>
+                                    <span class="block text-xs font-bold uppercase tracking-[0.12em] text-slate-500">
+                                        LinkedIn
+                                    </span>
 
-                        <div class="glass rounded-3xl p-7">
-                            <h3 class="text-xl font-bold text-white">Disponibilité</h3>
+                                    <span class="font-semibold text-slate-900">
+                                        Profil professionnel
+                                    </span>
+                                </span>
+                            </a>
 
-                            <div class="mt-5 flex items-center gap-3">
-                                <span class="h-3 w-3 animate-pulse rounded-full bg-emerald-400"></span>
-                                <p class="font-medium text-slate-300">
-                                    Disponible pour échanger autour d'un stage.
-                                </p>
-                            </div>
+                            <a
+                                href="https://github.com/jlaghribi1-hash"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-4 transition hover:border-slate-400 hover:bg-slate-100"
+                            >
+                                <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-800">
+                                    <i class="fa-brands fa-github"></i>
+                                </span>
+
+                                <span>
+                                    <span class="block text-xs font-bold uppercase tracking-[0.12em] text-slate-500">
+                                        GitHub
+                                    </span>
+
+                                    <span class="font-semibold text-slate-900">
+                                        Dépôts et réalisations
+                                    </span>
+                                </span>
+                            </a>
                         </div>
                     </aside>
+
+                    <!-- Formulaire -->
+                    <div class="reveal rounded-3xl border border-slate-200 bg-white p-7 shadow-md sm:p-9">
+                        <form id="contact-form">
+                            <div class="grid gap-6 sm:grid-cols-2">
+                                <div>
+                                    <label for="name" class="mb-2 block text-sm font-semibold text-slate-800">
+                                        Nom
+                                    </label>
+
+                                    <input
+                                        id="name"
+                                        name="name"
+                                        type="text"
+                                        required
+                                        autocomplete="name"
+                                        placeholder="Votre nom"
+                                        class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
+                                    >
+                                </div>
+
+                                <div>
+                                    <label for="email" class="mb-2 block text-sm font-semibold text-slate-800">
+                                        Email
+                                    </label>
+
+                                    <input
+                                        id="email"
+                                        name="email"
+                                        type="email"
+                                        required
+                                        autocomplete="email"
+                                        placeholder="votre@email.fr"
+                                        class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="mt-6">
+                                <label for="subject" class="mb-2 block text-sm font-semibold text-slate-800">
+                                    Sujet
+                                </label>
+
+                                <input
+                                    id="subject"
+                                    name="subject"
+                                    type="text"
+                                    required
+                                    placeholder="Objet de votre message"
+                                    class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
+                                >
+                            </div>
+
+                            <div class="mt-6">
+                                <label for="message" class="mb-2 block text-sm font-semibold text-slate-800">
+                                    Message
+                                </label>
+
+                                <textarea
+                                    id="message"
+                                    name="message"
+                                    rows="6"
+                                    required
+                                    placeholder="Décrivez votre demande..."
+                                    class="w-full resize-none rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
+                                ></textarea>
+                            </div>
+
+                            <button
+                                type="submit"
+                                class="mt-6 inline-flex items-center gap-2 rounded-xl bg-slate-900 px-6 py-3 font-semibold text-white shadow-md transition hover:bg-sky-700"
+                            >
+                                <i class="fa-solid fa-paper-plane"></i>
+                                Envoyer le message
+                            </button>
+
+                            <p class="mt-4 text-sm leading-6 text-slate-500">
+                                Le bouton ouvrira votre application de messagerie avec
+                                le message prérempli à destination de
+                                jabirlaghribi@gmail.com.
+                            </p>
+                        </form>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="border-t border-slate-800 bg-slate-950/50 px-5 py-8 sm:px-8">
-        <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-5 text-center sm:flex-row sm:text-left">
-            <p class="text-sm text-slate-500">
-                © <span id="current-year"></span>
-                <span class="text-sky-400 font-bold">Jabir</span>
-                <span class="text-white font-bold">LAGHRIBI</span>.
-                Tous droits réservés.
+    <!-- Footer -->
+    <footer class="border-t border-slate-200 bg-white text-slate-600">
+        <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-5 px-5 py-8 text-center sm:flex-row sm:text-left lg:px-8">
+            <div>
+                <p class="font-semibold text-slate-900">
+                    <span class="text-sky-700">Jabir</span> LAGHRIBI
+                </p>
+
+                <p class="mt-1 text-sm">
+                    BTS SIO option SISR
+                </p>
+            </div>
+
+            <p class="text-sm">
+                © <span id="current-year"></span> Jabir LAGHRIBI. Tous droits réservés.
             </p>
 
-            <a href="#accueil" class="inline-flex items-center gap-2 text-sm font-semibold text-slate-400 transition hover:text-sky-400">
-                Retour en haut
-                <i class="fa-solid fa-arrow-up"></i>
-            </a>
+            <div class="flex gap-2">
+                <a
+                    href="https://www.linkedin.com/in/jabir-laghribi-494b08387"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn"
+                    class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 text-slate-700 transition hover:bg-sky-50 hover:text-sky-700"
+                >
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+
+                <a
+                    href="https://github.com/jlaghribi1-hash"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="GitHub"
+                    class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 text-slate-700 transition hover:bg-slate-100 hover:text-slate-950"
+                >
+                    <i class="fa-brands fa-github"></i>
+                </a>
+            </div>
         </div>
     </footer>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            "use strict";
-
-            /*
-             * Année du footer
-             */
-            var yearElement = document.getElementById("current-year");
-
-            if (yearElement) {
-                yearElement.textContent = new Date().getFullYear();
-            }
-
-            /*
-             * Menu mobile
-             */
             var mobileMenuButton = document.getElementById("mobile-menu-button");
             var mobileMenu = document.getElementById("mobile-menu");
             var mobileMenuIcon = document.getElementById("mobile-menu-icon");
@@ -1445,9 +1773,9 @@
 
             if (mobileMenuButton && mobileMenu && mobileMenuIcon) {
                 mobileMenuButton.addEventListener("click", function () {
-                    var menuIsHidden = mobileMenu.classList.contains("hidden");
+                    var isHidden = mobileMenu.classList.contains("hidden");
 
-                    if (menuIsHidden) {
+                    if (isHidden) {
                         mobileMenu.classList.remove("hidden");
                         mobileMenuButton.setAttribute("aria-expanded", "true");
                         mobileMenuIcon.classList.remove("fa-bars");
@@ -1458,9 +1786,11 @@
                 });
             }
 
-            for (var mobileLinkIndex = 0; mobileLinkIndex < mobileLinks.length; mobileLinkIndex += 1) {
-                mobileLinks[mobileLinkIndex].addEventListener("click", closeMobileMenu);
-            }
+            mobileLinks.forEach(function (link) {
+                link.addEventListener("click", function () {
+                    closeMobileMenu();
+                });
+            });
 
             window.addEventListener("resize", function () {
                 if (window.innerWidth >= 1280) {
@@ -1468,137 +1798,152 @@
                 }
             });
 
-            /*
-             * Animations d'apparition
-             */
             var revealElements = document.querySelectorAll(".reveal");
 
             if ("IntersectionObserver" in window) {
                 var revealObserver = new IntersectionObserver(
                     function (entries, observer) {
-                        for (var entryIndex = 0; entryIndex < entries.length; entryIndex += 1) {
-                            if (entries[entryIndex].isIntersecting) {
-                                entries[entryIndex].target.classList.add("visible");
-                                observer.unobserve(entries[entryIndex].target);
+                        entries.forEach(function (entry) {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add("visible");
+                                observer.unobserve(entry.target);
                             }
-                        }
+                        });
                     },
                     {
                         threshold: 0.12
                     }
                 );
 
-                for (var revealIndex = 0; revealIndex < revealElements.length; revealIndex += 1) {
-                    revealObserver.observe(revealElements[revealIndex]);
-                }
+                revealElements.forEach(function (element) {
+                    revealObserver.observe(element);
+                });
             } else {
-                for (var fallbackIndex = 0; fallbackIndex < revealElements.length; fallbackIndex += 1) {
-                    revealElements[fallbackIndex].classList.add("visible");
-                }
+                revealElements.forEach(function (element) {
+                    element.classList.add("visible");
+                });
             }
 
-            /*
-             * Mise en évidence du lien de navigation actif
-             */
-            var sections = document.querySelectorAll("main section[id]");
             var navigationLinks = document.querySelectorAll(".nav-link");
+            var sections = document.querySelectorAll("main section[id]");
 
             function updateActiveNavigation() {
+                var currentSectionId = "";
                 var scrollPosition = window.scrollY + 160;
-                var activeSectionId = "";
 
-                for (var sectionIndex = 0; sectionIndex < sections.length; sectionIndex += 1) {
-                    var currentSection = sections[sectionIndex];
-
-                    if (scrollPosition >= currentSection.offsetTop) {
-                        activeSectionId = currentSection.getAttribute("id");
+                sections.forEach(function (section) {
+                    if (scrollPosition >= section.offsetTop) {
+                        currentSectionId = section.getAttribute("id");
                     }
-                }
+                });
 
-                for (var linkIndex = 0; linkIndex < navigationLinks.length; linkIndex += 1) {
-                    var currentLink = navigationLinks[linkIndex];
-                    var currentHref = currentLink.getAttribute("href");
+                navigationLinks.forEach(function (link) {
+                    var linkTarget = link.getAttribute("href");
 
-                    if (currentHref === "#" + activeSectionId) {
-                        currentLink.classList.add("active");
-                    } else {
-                        currentLink.classList.remove("active");
+                    link.classList.remove("active");
+
+                    if (linkTarget === "#" + currentSectionId) {
+                        link.classList.add("active");
                     }
-                }
+                });
             }
 
             window.addEventListener("scroll", updateActiveNavigation);
             updateActiveNavigation();
 
-            /*
-             * Carrousel des certifications
-             */
-            var carousel = document.getElementById("certification-carousel");
             var certificationTrack = document.getElementById("certification-track");
+            var previousButton = document.getElementById("certification-prev");
+            var nextButton = document.getElementById("certification-next");
+            var certificationDots = document.querySelectorAll(".certification-dot");
             var certificationSlides = document.querySelectorAll(".certification-slide");
-            var previousButton = document.getElementById("cert-prev");
-            var nextButton = document.getElementById("cert-next");
-            var carouselDots = document.querySelectorAll(".carousel-dot");
             var currentSlide = 0;
             var touchStartX = 0;
             var touchEndX = 0;
 
-            function showCertificationSlide(slideIndex) {
-                if (!certificationTrack || certificationSlides.length === 0) {
+            function animateProgressBars() {
+                var bars = document.querySelectorAll(".progress-bar");
+
+                bars.forEach(function (bar) {
+                    bar.classList.remove("animate");
+                });
+
+                if (currentSlide === 0) {
+                    window.setTimeout(function () {
+                        bars.forEach(function (bar) {
+                            bar.classList.add("animate");
+                        });
+                    }, 250);
+                }
+            }
+
+            function updateCertificationSlider() {
+                if (!certificationTrack) {
                     return;
                 }
 
-                if (slideIndex < 0) {
-                    currentSlide = certificationSlides.length - 1;
-                } else if (slideIndex >= certificationSlides.length) {
-                    currentSlide = 0;
-                } else {
-                    currentSlide = slideIndex;
-                }
+                certificationTrack.style.transform =
+                    "translateX(-" + currentSlide * 100 + "%)";
 
-                certificationTrack.style.transform = "translateX(-" + (currentSlide * 100) + "%)";
-
-                for (var slideLoopIndex = 0; slideLoopIndex < certificationSlides.length; slideLoopIndex += 1) {
-                    if (slideLoopIndex === currentSlide) {
-                        certificationSlides[slideLoopIndex].classList.add("is-active");
+                certificationDots.forEach(function (dot, index) {
+                    if (index === currentSlide) {
+                        dot.classList.remove("h-2.5", "w-2.5", "bg-slate-300");
+                        dot.classList.add("h-2.5", "w-8", "bg-sky-700");
                     } else {
-                        certificationSlides[slideLoopIndex].classList.remove("is-active");
+                        dot.classList.remove("w-8", "bg-sky-700");
+                        dot.classList.add("h-2.5", "w-2.5", "bg-slate-300");
                     }
+                });
+
+                animateProgressBars();
+            }
+
+            function showPreviousCertification() {
+                if (certificationSlides.length === 0) {
+                    return;
                 }
 
-                for (var dotIndex = 0; dotIndex < carouselDots.length; dotIndex += 1) {
-                    if (dotIndex === currentSlide) {
-                        carouselDots[dotIndex].classList.add("active");
-                    } else {
-                        carouselDots[dotIndex].classList.remove("active");
-                    }
+                currentSlide =
+                    (currentSlide - 1 + certificationSlides.length) %
+                    certificationSlides.length;
+
+                updateCertificationSlider();
+            }
+
+            function showNextCertification() {
+                if (certificationSlides.length === 0) {
+                    return;
                 }
+
+                currentSlide =
+                    (currentSlide + 1) % certificationSlides.length;
+
+                updateCertificationSlider();
             }
 
             if (previousButton) {
-                previousButton.addEventListener("click", function () {
-                    showCertificationSlide(currentSlide - 1);
-                });
+                previousButton.addEventListener("click", showPreviousCertification);
             }
 
             if (nextButton) {
-                nextButton.addEventListener("click", function () {
-                    showCertificationSlide(currentSlide + 1);
-                });
+                nextButton.addEventListener("click", showNextCertification);
             }
 
-            for (var dotButtonIndex = 0; dotButtonIndex < carouselDots.length; dotButtonIndex += 1) {
-                carouselDots[dotButtonIndex].addEventListener("click", function () {
-                    var requestedSlide = parseInt(this.getAttribute("data-slide"), 10);
+            certificationDots.forEach(function (dot) {
+                dot.addEventListener("click", function () {
+                    var requestedSlide = parseInt(
+                        dot.getAttribute("data-slide"),
+                        10
+                    );
 
                     if (!isNaN(requestedSlide)) {
-                        showCertificationSlide(requestedSlide);
+                        currentSlide = requestedSlide;
+                        updateCertificationSlider();
                     }
                 });
-            }
+            });
 
-            if (carousel) {
-                carousel.addEventListener(
+            if (certificationTrack) {
+                certificationTrack.addEventListener(
                     "touchstart",
                     function (event) {
                         touchStartX = event.changedTouches[0].screenX;
@@ -1608,21 +1953,17 @@
                     }
                 );
 
-                carousel.addEventListener(
+                certificationTrack.addEventListener(
                     "touchend",
                     function (event) {
                         touchEndX = event.changedTouches[0].screenX;
 
-                        var swipeDistance = touchEndX - touchStartX;
-
-                        if (Math.abs(swipeDistance) < 50) {
-                            return;
+                        if (touchStartX - touchEndX > 50) {
+                            showNextCertification();
                         }
 
-                        if (swipeDistance < 0) {
-                            showCertificationSlide(currentSlide + 1);
-                        } else {
-                            showCertificationSlide(currentSlide - 1);
+                        if (touchEndX - touchStartX > 50) {
+                            showPreviousCertification();
                         }
                     },
                     {
@@ -1631,53 +1972,9 @@
                 );
             }
 
-            showCertificationSlide(0);
+            updateCertificationSlider();
 
-            /*
-             * Formulaire de contact
-             * Le formulaire ouvre l'application de messagerie de l'utilisateur
-             * avec l'adresse, le sujet et le message déjà renseignés.
-             */
             var contactForm = document.getElementById("contact-form");
-            var formStatus = document.getElementById("form-status");
-            var destinationEmail = "jabirlaghribi@gmail.com";
-
-            function showFormStatus(message, statusType) {
-                if (!formStatus) {
-                    return;
-                }
-
-                formStatus.classList.remove(
-                    "hidden",
-                    "border-red-400/30",
-                    "bg-red-400/10",
-                    "text-red-300",
-                    "border-emerald-400/30",
-                    "bg-emerald-400/10",
-                    "text-emerald-300"
-                );
-
-                if (statusType === "error") {
-                    formStatus.classList.add(
-                        "border-red-400/30",
-                        "bg-red-400/10",
-                        "text-red-300"
-                    );
-                } else {
-                    formStatus.classList.add(
-                        "border-emerald-400/30",
-                        "bg-emerald-400/10",
-                        "text-emerald-300"
-                    );
-                }
-
-                formStatus.textContent = message;
-            }
-
-            function isValidEmail(emailAddress) {
-                var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                return emailPattern.test(emailAddress);
-            }
 
             if (contactForm) {
                 contactForm.addEventListener("submit", function (event) {
@@ -1688,56 +1985,54 @@
                     var subjectField = document.getElementById("subject");
                     var messageField = document.getElementById("message");
 
-                    var name = nameField ? nameField.value.trim() : "";
-                    var email = emailField ? emailField.value.trim() : "";
-                    var subject = subjectField ? subjectField.value.trim() : "";
-                    var message = messageField ? messageField.value.trim() : "";
-
-                    if (name === "" || email === "" || subject === "" || message === "") {
-                        showFormStatus(
-                            "Veuillez remplir tous les champs du formulaire.",
-                            "error"
-                        );
+                    if (
+                        !nameField ||
+                        !emailField ||
+                        !subjectField ||
+                        !messageField
+                    ) {
                         return;
                     }
 
-                    if (!isValidEmail(email)) {
-                        showFormStatus(
-                            "Veuillez saisir une adresse email valide.",
-                            "error"
-                        );
+                    var name = nameField.value.trim();
+                    var email = emailField.value.trim();
+                    var subject = subjectField.value.trim();
+                    var message = messageField.value.trim();
+
+                    if (!name || !email || !subject || !message) {
                         return;
                     }
 
-                    var emailSubject = encodeURIComponent(
-                        "[Portfolio] " + subject
+                    var mailSubject = encodeURIComponent(
+                        "Portfolio — " + subject
                     );
 
-                    var emailBody = encodeURIComponent(
-                        "Bonjour Jabir,\n\n" +
-                        message +
-                        "\n\n" +
-                        "Nom : " + name + "\n" +
-                        "Email : " + email
+                    var mailBody = encodeURIComponent(
+                        "Nom : " +
+                            name +
+                            "\n" +
+                            "Email : " +
+                            email +
+                            "\n\n" +
+                            "Message :\n" +
+                            message
                     );
 
-                    var mailtoLink =
-                        "mailto:" +
-                        destinationEmail +
-                        "?subject=" +
-                        emailSubject +
+                    window.location.href =
+                        "mailto:jabirlaghribi@gmail.com?subject=" +
+                        mailSubject +
                         "&body=" +
-                        emailBody;
-
-                    showFormStatus(
-                        "Votre application de messagerie va s'ouvrir pour finaliser l'envoi.",
-                        "success"
-                    );
-
-                    window.location.href = mailtoLink;
+                        mailBody;
                 });
+            }
+
+            var currentYear = document.getElementById("current-year");
+
+            if (currentYear) {
+                currentYear.textContent = new Date().getFullYear();
             }
         });
     </script>
 </body>
 </html>
+```
